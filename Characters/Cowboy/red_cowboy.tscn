@@ -1,26 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://dafh3ycio256o"]
+[gd_scene load_steps=19 format=3 uid="uid://dafh3ycio256o"]
 
 [ext_resource type="Texture2D" uid="uid://biho508pn20s" path="res://Characters/Cowboy/art/Orc_Cowboy_Red.png" id="1_32ll6"]
+[ext_resource type="Script" uid="uid://bmt6lplmgofy4" path="res://Characters/Cowboy/cowboy.gd" id="1_o8meo"]
+[ext_resource type="PackedScene" uid="uid://dsc06pk7yuvfo" path="res://Characters/Components/StateMachine/state_machine.tscn" id="2_8o4u2"]
+[ext_resource type="Script" uid="uid://j8vkema2pfn" path="res://Characters/Cowboy/character_animations.gd" id="2_vei2j"]
+[ext_resource type="PackedScene" uid="uid://cx365giiraq11" path="res://Characters/Components/Director/InputDirector/input_director.tscn" id="3_d251f"]
+[ext_resource type="PackedScene" uid="uid://ccd6q3xth0lqq" path="res://Characters/Components/StateMachine/States/Idle/idle.tscn" id="3_vei2j"]
+[ext_resource type="PackedScene" uid="uid://jua24evh8mco" path="res://Characters/Components/StateMachine/States/Move/move.tscn" id="4_d251f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_32ll6"]
 radius = 6.0
-
-[sub_resource type="Animation" id="Animation_32ll6"]
-resource_name = "idleDownRight"
-length = 2.20002
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-}
 
 [sub_resource type="Animation" id="Animation_4lnog"]
 length = 0.001
@@ -40,6 +29,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_r6ivg"]
 resource_name = "idleDownLeft"
 length = 2.20002
+loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -54,9 +44,10 @@ tracks/0/keys = {
 "values": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
 }
 
-[sub_resource type="Animation" id="Animation_8o4u2"]
-resource_name = "idleUpRight"
+[sub_resource type="Animation" id="Animation_32ll6"]
+resource_name = "idleDownRight"
 length = 2.20002
+loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -68,12 +59,13 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }
 
 [sub_resource type="Animation" id="Animation_vei2j"]
 resource_name = "idleUpLeft"
 length = 2.20002
+loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -88,10 +80,11 @@ tracks/0/keys = {
 "values": [33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43]
 }
 
-[sub_resource type="Animation" id="Animation_d251f"]
-resource_name = "gallopDownRight"
-length = 0.40001
-step = 0.1
+[sub_resource type="Animation" id="Animation_8o4u2"]
+resource_name = "idleUpRight"
+length = 2.20002
+loop_mode = 1
+step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -99,15 +92,16 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [44, 45, 46, 47]
+"values": [22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
 }
 
 [sub_resource type="Animation" id="Animation_o8meo"]
-resource_name = "gallopDownLeft"
+resource_name = "moveDownLeft"
 length = 0.40001
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -122,9 +116,10 @@ tracks/0/keys = {
 "values": [48, 49, 50, 51]
 }
 
-[sub_resource type="Animation" id="Animation_beqlw"]
-resource_name = "gallopUpRight"
+[sub_resource type="Animation" id="Animation_d251f"]
+resource_name = "moveDownRight"
 length = 0.40001
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -136,12 +131,13 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [52, 53, 54, 55]
+"values": [44, 45, 46, 47]
 }
 
 [sub_resource type="Animation" id="Animation_pi857"]
-resource_name = "gallopUpLeft"
+resource_name = "moveUpLeft"
 length = 0.40001
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -156,20 +152,39 @@ tracks/0/keys = {
 "values": [56, 57, 58, 59]
 }
 
+[sub_resource type="Animation" id="Animation_beqlw"]
+resource_name = "moveUpRight"
+length = 0.40001
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [52, 53, 54, 55]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4lnog"]
 _data = {
 &"RESET": SubResource("Animation_4lnog"),
-&"gallopDownLeft": SubResource("Animation_o8meo"),
-&"gallopDownRight": SubResource("Animation_d251f"),
-&"gallopUpLeft": SubResource("Animation_pi857"),
-&"gallopUpRight": SubResource("Animation_beqlw"),
 &"idleDownLeft": SubResource("Animation_r6ivg"),
 &"idleDownRight": SubResource("Animation_32ll6"),
 &"idleUpLeft": SubResource("Animation_vei2j"),
-&"idleUpRight": SubResource("Animation_8o4u2")
+&"idleUpRight": SubResource("Animation_8o4u2"),
+&"moveDownLeft": SubResource("Animation_o8meo"),
+&"moveDownRight": SubResource("Animation_d251f"),
+&"moveUpLeft": SubResource("Animation_pi857"),
+&"moveUpRight": SubResource("Animation_beqlw")
 }
 
 [node name="RedCowboy" type="CharacterBody2D"]
+script = ExtResource("1_o8meo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_32ll6")
@@ -184,3 +199,21 @@ shape = SubResource("CircleShape2D_32ll6")
 libraries = {
 &"": SubResource("AnimationLibrary_4lnog")
 }
+script = ExtResource("2_vei2j")
+
+[node name="InputDirector" parent="." instance=ExtResource("3_d251f")]
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("2_8o4u2")]
+starting_state = NodePath("Idle")
+
+[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("director", "move_state") instance=ExtResource("3_vei2j")]
+director = NodePath("../../InputDirector")
+move_state = NodePath("../Move")
+animation_name = "idle"
+animate_with_facing = true
+
+[node name="Move" parent="StateMachine" node_paths=PackedStringArray("director", "idle_state") instance=ExtResource("4_d251f")]
+director = NodePath("../../InputDirector")
+idle_state = NodePath("../Idle")
+animation_name = "move"
+animate_with_facing = true
