@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	var direction = endpoint_two.global_position - endpoint_one.global_position
+	var direction = endpoint_two.position - endpoint_one.position
 	var distance = direction.length()
 	var angle = direction.angle() - PI / 2.0
 	position = endpoint_one.position
