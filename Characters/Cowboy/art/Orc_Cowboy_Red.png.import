@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://biho508pn20s"
-path="res://.godot/imported/Orc_Cowboy_1.png-430ee1956afb47d7cbb0a9712ed81dd7.ctex"
+path="res://.godot/imported/Orc_Cowboy_Red.png-2f09bf47d759f43f9716142a4aa7cab3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Cowboy/art/Orc_Cowboy_1.png"
-dest_files=["res://.godot/imported/Orc_Cowboy_1.png-430ee1956afb47d7cbb0a9712ed81dd7.ctex"]
+source_file="res://Characters/Cowboy/art/Orc_Cowboy_Red.png"
+dest_files=["res://.godot/imported/Orc_Cowboy_Red.png-2f09bf47d759f43f9716142a4aa7cab3.ctex"]
 
 [params]
 
