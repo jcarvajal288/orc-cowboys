@@ -6,3 +6,8 @@ enum RenderOrder {
 	PLAYER = 5,
 	WALL = 10
 }
+
+enum CollisionLayer {
+	WALL = 1,
+	ROPE_SNAP_POINT = 2,
+}

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfmgg8xlsnyc6"]
+[gd_scene load_steps=4 format=3 uid="uid://dfmgg8xlsnyc6"]
 
 [ext_resource type="Texture2D" uid="uid://cd5beg40c703k" path="res://Entities/Barrel/art/barrel.png" id="1_wkbkx"]
+[ext_resource type="PackedScene" uid="uid://dd2gdc4bl5uaq" path="res://Components/RopeSnapPoint/rope_snap_point.tscn" id="2_wv1ew"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wv1ew"]
 radius = 3.0
@@ -13,3 +14,5 @@ texture = ExtResource("1_wkbkx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_wv1ew")
+
+[node name="RopeSnapPoint" parent="." instance=ExtResource("2_wv1ew")]
