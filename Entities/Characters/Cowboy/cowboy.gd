@@ -7,6 +7,7 @@ extends CharacterBody2D
 var speed = 75
 
 func _ready() -> void:
+	$Sprite2D.z_index = Global.RenderOrder.PLAYER
 	if sprite_texture:
 		$Sprite2D.texture = sprite_texture
 	$StateMachine.init(self)

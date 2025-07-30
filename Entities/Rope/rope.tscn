@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmtxevkmg2ite"]
+
+[ext_resource type="Texture2D" uid="uid://ce8m86l4a80y5" path="res://Entities/Rope/art/rope_segment.png" id="1_1inln"]
+[ext_resource type="Script" uid="uid://djq0g4lxbnd1w" path="res://Entities/Rope/rope.gd" id="1_l1kxw"]
+
+[node name="Rope" type="Node2D"]
+script = ExtResource("1_l1kxw")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 3.0
+offset_bottom = 12.0
+texture = ExtResource("1_1inln")
+expand_mode = 5
+stretch_mode = 1
