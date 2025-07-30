@@ -183,7 +183,7 @@ _data = {
 &"moveUpRight": SubResource("Animation_beqlw")
 }
 
-[node name="RedCowboy" type="CharacterBody2D"]
+[node name="Cowboy" type="CharacterBody2D"]
 script = ExtResource("1_o8meo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
