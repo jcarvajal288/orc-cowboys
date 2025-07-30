@@ -16,3 +16,9 @@ sprite_texture = ExtResource("3_1bvp3")
 [node name="BlueCowboy" parent="." instance=ExtResource("2_0xm2m")]
 position = Vector2(95, 121)
 sprite_texture = ExtResource("4_lquwl")
+
+[node name="InputDirector" parent="BlueCowboy" index="3"]
+wasd_movement = true
+
+[editable path="RedCowboy"]
+[editable path="BlueCowboy"]
