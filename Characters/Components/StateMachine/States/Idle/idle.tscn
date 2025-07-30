@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccd6q3xth0lqq"]
-
-[ext_resource type="Script" uid="uid://ctm602t80pre3" path="res://Characters/Components/StateMachine/States/Idle/idle.gd" id="1_tgp58"]
-
-[node name="Idle" type="Node"]
-script = ExtResource("1_tgp58")
