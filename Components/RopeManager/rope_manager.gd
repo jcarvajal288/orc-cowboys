@@ -12,14 +12,11 @@ func _ready() -> void:
 
 
 func bend_rope(old_rope: Rope, bend_point: RopeSnapPoint) -> void:
-	print("bending old_rope")
 	if not is_instance_valid(old_rope):
 		return
 	var rope1 = make_rope(old_rope.endpoint_one, bend_point.rope_anchor_point)
 	var rope2 = make_rope(bend_point.rope_anchor_point, old_rope.endpoint_two)
-	print("before: %d" % linked_ropes.size())
 	link_new_ropes(old_rope, rope1, rope2, bend_point)
-	print("after: %d" % linked_ropes.size())
 	delete_rope(old_rope)
 
 
@@ -39,13 +36,11 @@ func link_new_ropes(old_rope: Rope, rope1: Rope, rope2: Rope, bend_point: RopeSn
 
 
 func delete_rope(rope: Rope) -> void:
-	print("deleting rope")
 	rope.rope_bent.disconnect(bend_rope)
 	rope.queue_free()
 
 
 func make_rope(endpoint_one: Node2D, endpoint_two: Node2D) -> Rope:
-	print("making rope")
 	var new_rope = rope_scene.instantiate()
 	new_rope.endpoint_one = endpoint_one
 	new_rope.endpoint_two = endpoint_two
@@ -57,7 +52,6 @@ func make_rope(endpoint_one: Node2D, endpoint_two: Node2D) -> Rope:
 func _physics_process(_delta: float) -> void:
 	for linked_rope in linked_ropes:
 		if has_unwound(linked_rope):
-			#print("has unwound")
 			unwind_ropes(linked_rope)
 
 
@@ -79,11 +73,9 @@ func has_unwound(linked_rope: Array) -> bool:
 	return not do_lines_intersect(rope_line, center_line)
 
 func find_linked_rope_common_point(endpoints: Array[Vector2]) -> Vector2:
-	# print(endpoints)
 	for i in endpoints.size():
 		if endpoints.slice(i+1, -1).has(endpoints[i]):
 			return endpoints[i]
-	# print("no common point found!")
 	return endpoints[0]
 
 
