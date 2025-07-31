@@ -11,22 +11,36 @@ func _ready() -> void:
 			child.rope_bent.connect(bend_rope)
 
 
-func bend_rope(rope: Rope, bend_point: RopeSnapPoint) -> void:
-	print("bending rope")
-	if not is_instance_valid(rope):
+func bend_rope(old_rope: Rope, bend_point: RopeSnapPoint) -> void:
+	print("bending old_rope")
+	if not is_instance_valid(old_rope):
 		return
-	var rope1 = make_rope(rope.endpoint_one, bend_point.rope_anchor_point)
-	var rope2 = make_rope(bend_point.rope_anchor_point, rope.endpoint_two)
+	var rope1 = make_rope(old_rope.endpoint_one, bend_point.rope_anchor_point)
+	var rope2 = make_rope(bend_point.rope_anchor_point, old_rope.endpoint_two)
+	print("before: %d" % linked_ropes.size())
+	link_new_ropes(old_rope, rope1, rope2, bend_point)
+	print("after: %d" % linked_ropes.size())
+	delete_rope(old_rope)
+
+
+func link_new_ropes(old_rope: Rope, rope1: Rope, rope2: Rope, bend_point: RopeSnapPoint) -> void:
+	linked_ropes = linked_ropes.map(func(linked_rope: Array):
+		if (linked_rope[0] == old_rope):
+			return [rope2, linked_rope[1], linked_rope[2]]
+		elif (linked_rope[1] == old_rope):
+			return [linked_rope[0], rope1, linked_rope[2]]
+		else:
+			return linked_rope
+	)
+	linked_ropes = linked_ropes.filter(func(linked_rope): 
+		return not linked_rope.has(old_rope)
+	)
 	linked_ropes.append([rope1, rope2, bend_point.center_point])
-	delete_rope(rope)
 
 
 func delete_rope(rope: Rope) -> void:
 	print("deleting rope")
 	rope.rope_bent.disconnect(bend_rope)
-	linked_ropes = linked_ropes.filter(func(linked_rope): 
-		return not linked_rope.has(rope)
-	)
 	rope.queue_free()
 
 
@@ -62,10 +76,6 @@ func has_unwound(linked_rope: Array) -> bool:
 	var rope_line: Array[Vector2] = endpoints.filter(func(endpoint): return endpoint != common_point)
 	# the two ropes have unwound from their anchor point if the line segment from the common
 	# point to the center point and the one from the far rope endpoints do not intersect
-	# print("center line:")
-	# print(center_line)
-	# print("rope line:")
-	# print(rope_line)
 	return not do_lines_intersect(rope_line, center_line)
 
 func find_linked_rope_common_point(endpoints: Array[Vector2]) -> Vector2:
@@ -97,13 +107,25 @@ func do_lines_intersect(line: Array[Vector2], ray: Array[Vector2]) -> bool:
 func unwind_ropes(linked_rope: Array) -> void:
 	var rope1: Rope = linked_rope[0]
 	var rope2: Rope = linked_rope[1]
+	var new_rope = null
 	if (rope1.endpoint_one.global_position == rope2.endpoint_one.global_position):
-		make_rope(rope1.endpoint_two, rope2.endpoint_two)
+		new_rope = make_rope(rope1.endpoint_two, rope2.endpoint_two)
 	elif (rope1.endpoint_one.global_position == rope2.endpoint_two.global_position):
-		make_rope(rope1.endpoint_two, rope2.endpoint_one)
+		new_rope = make_rope(rope1.endpoint_two, rope2.endpoint_one)
 	elif (rope1.endpoint_two.global_position == rope2.endpoint_one.global_position):
-		make_rope(rope1.endpoint_one, rope2.endpoint_two)
+		new_rope = make_rope(rope1.endpoint_one, rope2.endpoint_two)
 	else:
-		make_rope(rope1.endpoint_one, rope2.endpoint_one)
+		new_rope = make_rope(rope1.endpoint_one, rope2.endpoint_one)
+	# remove the old linked_rope and link the ropes that it was touching before
+	linked_ropes = linked_ropes.filter(func(lr): 
+		return not lr == linked_rope
+	).map(func(lr):
+		return lr.map(func(r):
+			if (is_instance_of(r, Rope) and (r == rope1 or r == rope2)):
+				return new_rope
+			else:
+				return r
+		)
+	)
 	delete_rope(rope1)
 	delete_rope(rope2)
