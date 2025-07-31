@@ -12,8 +12,8 @@ height = 8.0
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_wkbkx")
 
-[node name="RopeBender_RopeSnapPoint_RopeDetectionArea#CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.035, 1.97)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_wv1ew")
 
 [node name="RopeBender" parent="." instance=ExtResource("2_wv1ew")]
