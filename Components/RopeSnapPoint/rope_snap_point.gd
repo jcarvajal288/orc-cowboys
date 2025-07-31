@@ -1,4 +1,4 @@
-extends Area2D
+class_name RopeSnapPoint extends Area2D
 
 func _ready() -> void:
 	set_collision_layer_value(Global.CollisionLayer.ROPE_SNAP_POINT, true)

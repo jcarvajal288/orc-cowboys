@@ -1,9 +1,11 @@
-extends Node2D
+class_name Rope extends Node2D
 
 @export var endpoint_one: Node2D 
 @export var endpoint_two: Node2D 
 
 @onready var collision_shape = $TextureRect/Area2D/CollisionShape2D
+
+signal rope_bent
 
 
 func _ready() -> void:
@@ -16,15 +18,18 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	var direction = endpoint_two.position - endpoint_one.position
+	if not (is_instance_valid(endpoint_one) and is_instance_valid(endpoint_two)):
+		return
+	var direction = endpoint_two.global_position - endpoint_one.global_position
 	var distance = direction.length()
 	var angle = direction.angle() - PI / 2.0
-	position = endpoint_one.position
+	position = endpoint_one.global_position
 	$TextureRect.rotation = angle
 	$TextureRect.size = Vector2(3, distance)
 	collision_shape.shape.size = $TextureRect.size
 	collision_shape.position = $TextureRect.size / 2.0
 
 
-func _on_area_entered(_area: Area2D):
-	print("rope collided")
+func _on_area_entered(snap_point: RopeSnapPoint):
+	if not (snap_point == endpoint_one or snap_point == endpoint_two):
+		rope_bent.emit(self, snap_point)

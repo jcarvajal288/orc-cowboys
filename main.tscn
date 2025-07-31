@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://lnkxpkumeej5"]
+[gd_scene load_steps=8 format=3 uid="uid://lnkxpkumeej5"]
 
 [ext_resource type="PackedScene" uid="uid://cnqrm23ptl3i1" path="res://Level/level.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dafh3ycio256o" path="res://Entities/Characters/Cowboy/cowboy.tscn" id="2_0xm2m"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://gkjjuo3ca0jq" path="res://Entities/Characters/Cowboy/art/Orc_Cowboy_Blue.png" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bmtxevkmg2ite" path="res://Entities/Rope/rope.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dfmgg8xlsnyc6" path="res://Entities/Barrel/barrel.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://cvkvfgfqxqtei" path="res://Components/RopeManager/rope_manager.tscn" id="6_272bh"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -22,12 +23,15 @@ sprite_texture = ExtResource("4_lquwl")
 [node name="InputDirector" parent="BlueCowboy" index="3"]
 wasd_movement = true
 
-[node name="Rope" parent="." node_paths=PackedStringArray("endpoint_one", "endpoint_two") instance=ExtResource("5_lquwl")]
-endpoint_one = NodePath("../RedCowboy")
-endpoint_two = NodePath("../BlueCowboy")
-
 [node name="Barrel" parent="." instance=ExtResource("6_7mycd")]
-position = Vector2(159, 117)
+position = Vector2(159, 107.585)
+
+[node name="RopeManager" parent="." instance=ExtResource("6_272bh")]
+rope_scene = ExtResource("5_lquwl")
+
+[node name="Rope" parent="RopeManager" node_paths=PackedStringArray("endpoint_one", "endpoint_two") instance=ExtResource("5_lquwl")]
+endpoint_one = NodePath("../../RedCowboy")
+endpoint_two = NodePath("../../BlueCowboy")
 
 [editable path="RedCowboy"]
 [editable path="BlueCowboy"]
