@@ -12,7 +12,8 @@ height = 8.0
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_wkbkx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="RopeBender_RopeSnapPoint_RopeDetectionArea#CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.035, 1.97)
 shape = SubResource("CapsuleShape2D_wv1ew")
 
 [node name="RopeBender" parent="." instance=ExtResource("2_wv1ew")]
@@ -20,19 +21,61 @@ shape = SubResource("CapsuleShape2D_wv1ew")
 [node name="RopeSnapPoint" parent="RopeBender" index="1"]
 position = Vector2(-0.035, -3.97)
 
+[node name="CollisionShape2D" parent="RopeBender/RopeSnapPoint" index="0"]
+position = Vector2(0.035, 1.97)
+
+[node name="RopeAnchorPoint" parent="RopeBender/RopeSnapPoint" index="1"]
+position = Vector2(0.035, -0.0299997)
+
 [node name="RopeSnapPoint2" parent="RopeBender" index="2"]
 position = Vector2(2.985, -1.92)
+
+[node name="CollisionShape2D" parent="RopeBender/RopeSnapPoint2" index="0"]
+position = Vector2(-0.985, 0.92)
+
+[node name="RopeAnchorPoint" parent="RopeBender/RopeSnapPoint2" index="1"]
+position = Vector2(0.0150003, -0.0799999)
 
 [node name="RopeSnapPoint3" parent="RopeBender" index="3"]
 position = Vector2(2.98, 3.045)
 
+[node name="CollisionShape2D" parent="RopeBender/RopeSnapPoint3" index="0"]
+position = Vector2(-0.98, -1.045)
+
+[node name="RopeAnchorPoint" parent="RopeBender/RopeSnapPoint3" index="1"]
+position = Vector2(0.02, -0.0450001)
+
 [node name="RopeSnapPoint4" parent="RopeBender" index="4"]
 position = Vector2(0, 5.01)
+
+[node name="CollisionShape2D" parent="RopeBender/RopeSnapPoint4" index="0"]
+position = Vector2(0, -2.01)
+
+[node name="RopeAnchorPoint" parent="RopeBender/RopeSnapPoint4" index="1"]
+position = Vector2(0, -0.0100002)
 
 [node name="RopeSnapPoint5" parent="RopeBender" index="5"]
 position = Vector2(-2.975, 2.93)
 
+[node name="CollisionShape2D" parent="RopeBender/RopeSnapPoint5" index="0"]
+position = Vector2(0.975, -0.93)
+
+[node name="RopeAnchorPoint" parent="RopeBender/RopeSnapPoint5" index="1"]
+position = Vector2(-0.0250001, 0.0699997)
+
 [node name="RopeSnapPoint6" parent="RopeBender" index="6"]
 position = Vector2(-3.005, -1.965)
 
+[node name="CollisionShape2D" parent="RopeBender/RopeSnapPoint6" index="0"]
+position = Vector2(1.005, 0.965)
+
+[node name="RopeAnchorPoint" parent="RopeBender/RopeSnapPoint6" index="1"]
+position = Vector2(0.00500011, -0.0349998)
+
 [editable path="RopeBender"]
+[editable path="RopeBender/RopeSnapPoint"]
+[editable path="RopeBender/RopeSnapPoint2"]
+[editable path="RopeBender/RopeSnapPoint3"]
+[editable path="RopeBender/RopeSnapPoint4"]
+[editable path="RopeBender/RopeSnapPoint5"]
+[editable path="RopeBender/RopeSnapPoint6"]

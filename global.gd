@@ -11,3 +11,4 @@ enum CollisionLayer {
 	WALL = 1,
 	ROPE_SNAP_POINT = 2,
 }
+

@@ -31,5 +31,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_area_entered(snap_point: RopeSnapPoint):
-	if not (snap_point == endpoint_one or snap_point == endpoint_two):
+	# print("rope detected")
+	var anchor_point = snap_point.rope_anchor_point
+	if not (anchor_point == endpoint_one or anchor_point == endpoint_two):
 		rope_bent.emit(self, snap_point)

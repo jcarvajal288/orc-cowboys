@@ -9,13 +9,50 @@ script = ExtResource("1_k1ihh")
 [node name="Marker2D" type="Marker2D" parent="."]
 
 [node name="RopeSnapPoint" parent="." instance=ExtResource("2_54vot")]
+position = Vector2(0, -3)
+
+[node name="RopeAnchorPoint" parent="RopeSnapPoint" index="1"]
+position = Vector2(0, -2)
+gizmo_extents = 2.0
 
 [node name="RopeSnapPoint2" parent="." instance=ExtResource("2_54vot")]
+position = Vector2(3, -2)
+
+[node name="RopeAnchorPoint" parent="RopeSnapPoint2" index="1"]
+position = Vector2(2, -2)
+gizmo_extents = 2.0
 
 [node name="RopeSnapPoint3" parent="." instance=ExtResource("2_54vot")]
+position = Vector2(3, 2)
+
+[node name="RopeAnchorPoint" parent="RopeSnapPoint3" index="1"]
+position = Vector2(2, 2)
+gizmo_extents = 2.0
 
 [node name="RopeSnapPoint4" parent="." instance=ExtResource("2_54vot")]
+position = Vector2(0, 3)
+
+[node name="RopeAnchorPoint" parent="RopeSnapPoint4" index="1"]
+position = Vector2(0, 2)
+gizmo_extents = 2.0
 
 [node name="RopeSnapPoint5" parent="." instance=ExtResource("2_54vot")]
+position = Vector2(-3, 2)
+
+[node name="RopeAnchorPoint" parent="RopeSnapPoint5" index="1"]
+position = Vector2(-2, 2)
+gizmo_extents = 2.0
 
 [node name="RopeSnapPoint6" parent="." instance=ExtResource("2_54vot")]
+position = Vector2(-3, -2)
+
+[node name="RopeAnchorPoint" parent="RopeSnapPoint6" index="1"]
+position = Vector2(-2, -2)
+gizmo_extents = 2.0
+
+[editable path="RopeSnapPoint"]
+[editable path="RopeSnapPoint2"]
+[editable path="RopeSnapPoint3"]
+[editable path="RopeSnapPoint4"]
+[editable path="RopeSnapPoint5"]
+[editable path="RopeSnapPoint6"]
