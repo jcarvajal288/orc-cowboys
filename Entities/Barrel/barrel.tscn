@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfmgg8xlsnyc6"]
 
 [ext_resource type="Texture2D" uid="uid://cd5beg40c703k" path="res://Entities/Barrel/art/barrel.png" id="1_wkbkx"]
-[ext_resource type="PackedScene" uid="uid://dd2gdc4bl5uaq" path="res://Components/RopeSnapPoint/rope_snap_point.tscn" id="2_wv1ew"]
+[ext_resource type="PackedScene" uid="uid://cmrawgb3xnu8l" path="res://Components/RopeBender/rope_bender.tscn" id="2_wv1ew"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wv1ew"]
 radius = 3.0
@@ -15,4 +15,24 @@ texture = ExtResource("1_wkbkx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_wv1ew")
 
-[node name="RopeSnapPoint" parent="." instance=ExtResource("2_wv1ew")]
+[node name="RopeBender" parent="." instance=ExtResource("2_wv1ew")]
+
+[node name="RopeSnapPoint" parent="RopeBender" index="1"]
+position = Vector2(-0.035, -3.97)
+
+[node name="RopeSnapPoint2" parent="RopeBender" index="2"]
+position = Vector2(2.985, -1.92)
+
+[node name="RopeSnapPoint3" parent="RopeBender" index="3"]
+position = Vector2(2.98, 3.045)
+
+[node name="RopeSnapPoint4" parent="RopeBender" index="4"]
+position = Vector2(0, 5.01)
+
+[node name="RopeSnapPoint5" parent="RopeBender" index="5"]
+position = Vector2(-2.975, 2.93)
+
+[node name="RopeSnapPoint6" parent="RopeBender" index="6"]
+position = Vector2(-3.005, -1.965)
+
+[editable path="RopeBender"]
