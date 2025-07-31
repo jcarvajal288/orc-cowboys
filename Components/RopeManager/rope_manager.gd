@@ -70,9 +70,6 @@ func has_unwound(linked_rope: Array) -> bool:
 	var rope_line: Array[Vector2] = endpoints.filter(func(endpoint): return endpoint != common_point)
 	# the two ropes have unwound from their anchor point if the line segment from the common
 	# point to the center point and the one from the far rope endpoints do not intersect
-	var do_intersect = do_lines_intersect(rope_line, center_line)
-	if not do_intersect:
-		print("no intersect")
 	return not do_lines_intersect(rope_line, center_line)
 
 func find_linked_rope_common_point(endpoints: Array[Vector2]) -> Vector2:
