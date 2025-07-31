@@ -12,16 +12,15 @@ func _ready() -> void:
 func bend_rope(rope: Rope, bend_point: RopeSnapPoint) -> void:
 	if not is_instance_valid(rope):
 		return
-	var rope1 = rope_scene.instantiate()
-	rope1.endpoint_one = rope.endpoint_one
-	rope1.endpoint_two = bend_point
-	rope1.rope_bent.connect(bend_rope)
-
-	var rope2 = rope_scene.instantiate()
-	rope2.endpoint_one = bend_point
-	rope2.endpoint_two = rope.endpoint_two
-	rope2.rope_bent.connect(bend_rope)
-
-	add_child(rope1)
-	add_child(rope2)
+	make_rope(rope.endpoint_one, bend_point)
+	make_rope(bend_point, rope.endpoint_two)
+	rope.rope_bent.disconnect(bend_rope)
 	rope.queue_free()
+
+
+func make_rope(endpoint_one: Node2D, endpoint_two: Node2D) -> void:
+	var new_rope = rope_scene.instantiate()
+	new_rope.endpoint_one = endpoint_one
+	new_rope.endpoint_two = endpoint_two
+	new_rope.rope_bent.connect(bend_rope)
+	add_child(new_rope)
