@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://djq0g4lxbnd1w" path="res://Entities/Rope/rope.gd" id="1_l1kxw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1kxw"]
+resource_local_to_scene = true
 size = Vector2(3.25, 12)
 
 [node name="Rope" type="Node2D"]
