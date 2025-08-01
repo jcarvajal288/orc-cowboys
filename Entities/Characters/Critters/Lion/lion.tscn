@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwc4k5ercf3i4"]
+[gd_scene load_steps=16 format=3 uid="uid://dwc4k5ercf3i4"]
 
+[ext_resource type="Script" uid="uid://bi8hc48242mrv" path="res://Entities/Characters/Critters/Lion/lion.gd" id="1_br007"]
 [ext_resource type="Texture2D" uid="uid://bvbhqddqfydte" path="res://Entities/Characters/Critters/Lion/art/lion_all.png" id="1_lxb2c"]
 [ext_resource type="Script" uid="uid://j8vkema2pfn" path="res://Entities/Characters/character_animations.gd" id="2_pj0he"]
 [ext_resource type="PackedScene" uid="uid://cmrawgb3xnu8l" path="res://Components/RopeBender/rope_bender.tscn" id="3_pj0he"]
@@ -180,6 +181,7 @@ _data = {
 radius = 7.0
 
 [node name="Lion" type="CharacterBody2D"]
+script = ExtResource("1_br007")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_lxb2c")
