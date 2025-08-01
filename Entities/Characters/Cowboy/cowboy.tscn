@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bmt6lplmgofy4" path="res://Entities/Characters/Cowboy/cowboy.gd" id="1_o8meo"]
 [ext_resource type="PackedScene" uid="uid://dsc06pk7yuvfo" path="res://Entities/Characters/Components/StateMachine/state_machine.tscn" id="2_8o4u2"]
 [ext_resource type="Script" uid="uid://j8vkema2pfn" path="res://Entities/Characters/character_animations.gd" id="2_vei2j"]
-[ext_resource type="PackedScene" uid="uid://cx365giiraq11" path="res://Entities/Characters/Components/Director/InputDirector/input_director.tscn" id="3_d251f"]
+[ext_resource type="PackedScene" uid="uid://cx365giiraq11" path="res://Entities/Characters/Components/Directors/InputDirector/input_director.tscn" id="3_d251f"]
 [ext_resource type="PackedScene" uid="uid://ccd6q3xth0lqq" path="res://Entities/Characters/Components/StateMachine/States/Idle/idle.tscn" id="3_vei2j"]
 [ext_resource type="PackedScene" uid="uid://jua24evh8mco" path="res://Entities/Characters/Components/StateMachine/States/Move/move.tscn" id="4_d251f"]
 

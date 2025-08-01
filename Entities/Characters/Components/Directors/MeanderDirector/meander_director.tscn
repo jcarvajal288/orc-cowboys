@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbajqb85nipho"]
+
+[ext_resource type="Script" uid="uid://cowr0hw3dbu5j" path="res://Entities/Characters/Components/Directors/MeanderDirector/meander_director.gd" id="1_jch2u"]
+
+[node name="MeanderDirector" type="Node"]
+script = ExtResource("1_jch2u")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0

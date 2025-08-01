@@ -1,5 +1,10 @@
 extends Node
 
+var rng: RandomNumberGenerator
+
+func _ready() -> void:
+	rng = RandomNumberGenerator.new()
+
 enum RenderOrder {
 	FLOOR = 0,
 	ROPE = 2,
