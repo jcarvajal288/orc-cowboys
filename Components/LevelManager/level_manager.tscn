@@ -5,4 +5,11 @@
 [node name="LevelManager" type="Node"]
 script = ExtResource("1_uiuky")
 
-[node name="LoopPolygon" type="Polygon2D" parent="."]
+[node name="ScoreArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ScoreArea"]
+
+[node name="LoopPolygon" type="Polygon2D" parent="ScoreArea"]
+
+[node name="ScoreTimer" type="Timer" parent="."]
+wait_time = 0.1

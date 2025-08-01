@@ -37,19 +37,19 @@ endpoint_two = NodePath("../../BlueCowboy")
 [node name="Pig" parent="." instance=ExtResource("8_5vw27")]
 position = Vector2(154, 118)
 
-[node name="Barrel" parent="Pig" instance=ExtResource("6_7mycd")]
-position = Vector2(75, 8)
-
-[node name="Barrel2" parent="Pig" instance=ExtResource("6_7mycd")]
-position = Vector2(-62, -27)
-
-[node name="Barrel3" parent="Pig" instance=ExtResource("6_7mycd")]
-position = Vector2(52, -45)
-
-[node name="Barrel4" parent="Pig" instance=ExtResource("6_7mycd")]
-position = Vector2(-16, 27)
-
 [node name="LevelManager" parent="." instance=ExtResource("9_kek77")]
+
+[node name="Barrel" parent="." instance=ExtResource("6_7mycd")]
+position = Vector2(229, 126)
+
+[node name="Barrel2" parent="." instance=ExtResource("6_7mycd")]
+position = Vector2(92, 91)
+
+[node name="Barrel3" parent="." instance=ExtResource("6_7mycd")]
+position = Vector2(206, 73)
+
+[node name="Barrel4" parent="." instance=ExtResource("6_7mycd")]
+position = Vector2(138, 145)
 
 [connection signal="loop_scored" from="RopeManager" to="LevelManager" method="score_loop"]
 
