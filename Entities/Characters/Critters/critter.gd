@@ -3,6 +3,7 @@ class_name Critter extends CharacterBody2D
 @onready var animation_player = $AnimationPlayer
 
 var speed = 20
+var score = 10
 
 func _ready() -> void:
 	$Sprite2D.z_index = Global.RenderOrder.PLAYER

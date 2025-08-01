@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfysokceg07fc"]
+
+[ext_resource type="Script" uid="uid://cdsky68i5cnqn" path="res://UI/Score/score.gd" id="1_4x160"]
+
+[sub_resource type="SystemFont" id="SystemFont_4x160"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4x160"]
+font = SubResource("SystemFont_4x160")
+
+[node name="Score" type="CanvasLayer"]
+script = ExtResource("1_4x160")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_4x160")
+horizontal_alignment = 1
