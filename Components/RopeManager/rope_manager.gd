@@ -59,9 +59,11 @@ func _physics_process(_delta: float) -> void:
 	var ropes = get_children().filter(func(child): return is_instance_of(child, Rope))
 	for i in ropes.size():
 		for j in range(i+1, ropes.size()):
-			var rope1 = ropes[i]
-			var rope2 = ropes[j]
-			if (do_segments_intersect(rope1.get_line_segment(), rope2.get_line_segment())):
+			var line1 = ropes[i].get_line_segment()
+			var line2 = ropes[j].get_line_segment()
+			# if (do_segments_intersect(rope1.get_line_segment(), rope2.get_line_segment())):
+			var intersection = find_intersection(line1, line2)
+			if intersection != Vector2.INF:
 				reset_ropes()
 
 
@@ -128,6 +130,29 @@ func do_segments_intersect(line1: Array[Vector2], line2: Array[Vector2]) -> bool
 		are_counterclockwise.call(a,b,c) !=
 		are_counterclockwise.call(a,b,d)
 	)
+
+
+func find_intersection(line1: Array[Vector2], line2: Array[Vector2]) -> Vector2:
+	# taken from https://www.youtube.com/watch?v=bvlIYX9cgls
+	var x1 = line1[0].x
+	var y1 = line1[0].y
+	var x2 = line1[1].x
+	var y2 = line1[1].y
+	var x3 = line2[0].x
+	var y3 = line2[0].y
+	var x4 = line2[1].x
+	var y4 = line2[1].y
+	var a = ((x4 - x3) * (y3 - y1) - (y4 - y3) * (x3 - x1) /
+			 (x4 - x3) * (y2 - y1) - (y4 - y3) * (x2 - x1))
+	var b = ((x2 - x1) * (y3 - y1) - (y2 - y1) * (x3 - x1) /
+			 (x4 - x3) * (y2 - y1) - (y4 - y3) * (x2 - x1))
+	if 0 < a and a <= 1 and 0 < b and b <= 1.0:
+		var px = x1 + a * (x2 - x1)
+		var py = y1 + a * (y2 - y1)
+		return Vector2(px, py)
+	else:
+		return Vector2.INF # if b == 0, the lines are parallel. if a == 0 and b == 0, colinear
+	
 
 
 
