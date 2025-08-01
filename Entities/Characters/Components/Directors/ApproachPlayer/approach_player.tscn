@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bffsvc134b25n"]
+
+[ext_resource type="Script" uid="uid://cequ8n5i3c8hp" path="res://Entities/Characters/Components/Directors/ApproachPlayer/approach_player.gd" id="1_mlyqq"]
+
+[node name="ApproachPlayerDirector" type="Node"]
+script = ExtResource("1_mlyqq")

@@ -1,4 +1,5 @@
 extends Critter
 
 func _init() -> void:
-	speed = 30
+	speed = 50
+	score = 200

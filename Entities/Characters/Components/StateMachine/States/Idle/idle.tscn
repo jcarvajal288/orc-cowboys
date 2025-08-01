@@ -4,3 +4,5 @@
 
 [node name="Idle" type="Node"]
 script = ExtResource("1_tgp58")
+animation_name = "idle"
+animate_with_facing = true

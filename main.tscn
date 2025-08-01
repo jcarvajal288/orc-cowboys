@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://lnkxpkumeej5"]
+[gd_scene load_steps=11 format=3 uid="uid://lnkxpkumeej5"]
 
 [ext_resource type="PackedScene" uid="uid://cnqrm23ptl3i1" path="res://Level/level.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dafh3ycio256o" path="res://Entities/Characters/Cowboy/cowboy.tscn" id="2_0xm2m"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cvkvfgfqxqtei" path="res://Components/RopeManager/rope_manager.tscn" id="6_272bh"]
 [ext_resource type="PackedScene" uid="uid://dqhro245jm7o3" path="res://Entities/Characters/Critters/Pig/pig.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://rbvlih3jaros" path="res://Components/ScoreTracker/score_tracker.tscn" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://dwc4k5ercf3i4" path="res://Entities/Characters/Critters/Lion/lion.tscn" id="10_4c57u"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -51,6 +52,9 @@ position = Vector2(206, 73)
 position = Vector2(138, 145)
 
 [node name="ScoreTracker" parent="." instance=ExtResource("9_kek77")]
+
+[node name="Lion" parent="." instance=ExtResource("10_4c57u")]
+position = Vector2(142, 67)
 
 [connection signal="loop_scored" from="RopeManager" to="ScoreTracker" method="score_loop"]
 

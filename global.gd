@@ -17,3 +17,5 @@ enum CollisionLayer {
 	ROPE_SNAP_POINT = 2,
 }
 
+var red_cowboy_location = Vector2.ZERO
+var blue_cowboy_location = Vector2.ZERO

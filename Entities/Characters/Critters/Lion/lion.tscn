@@ -1,9 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://dwc4k5ercf3i4"]
+[gd_scene load_steps=20 format=3 uid="uid://dwc4k5ercf3i4"]
 
 [ext_resource type="Script" uid="uid://bi8hc48242mrv" path="res://Entities/Characters/Critters/Lion/lion.gd" id="1_br007"]
 [ext_resource type="Texture2D" uid="uid://bvbhqddqfydte" path="res://Entities/Characters/Critters/Lion/art/lion_all.png" id="1_lxb2c"]
 [ext_resource type="Script" uid="uid://j8vkema2pfn" path="res://Entities/Characters/character_animations.gd" id="2_pj0he"]
 [ext_resource type="PackedScene" uid="uid://cmrawgb3xnu8l" path="res://Components/RopeBender/rope_bender.tscn" id="3_pj0he"]
+[ext_resource type="PackedScene" uid="uid://bffsvc134b25n" path="res://Entities/Characters/Components/Directors/ApproachPlayer/approach_player.tscn" id="5_lvkhx"]
+[ext_resource type="PackedScene" uid="uid://dsc06pk7yuvfo" path="res://Entities/Characters/Components/StateMachine/state_machine.tscn" id="6_yfvwm"]
+[ext_resource type="PackedScene" uid="uid://ccd6q3xth0lqq" path="res://Entities/Characters/Components/StateMachine/States/Idle/idle.tscn" id="7_61fu6"]
+[ext_resource type="PackedScene" uid="uid://jua24evh8mco" path="res://Entities/Characters/Components/StateMachine/States/Move/move.tscn" id="8_a47ux"]
 
 [sub_resource type="Animation" id="Animation_lxb2c"]
 length = 0.001
@@ -195,49 +199,48 @@ libraries = {
 script = ExtResource("2_pj0he")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(0, 0.02)
 shape = SubResource("CircleShape2D_0xqtd")
 
 [node name="RopeBender" parent="." instance=ExtResource("3_pj0he")]
-position = Vector2(0, -2.02)
 
-[node name="RopeSnapPoint" parent="RopeBender" index="1"]
-position = Vector2(0, -4)
+[node name="Marker2D" parent="RopeBender" index="0"]
+position = Vector2(0, 2.02)
 
-[node name="CollisionShape2D" parent="RopeBender/RopeSnapPoint" index="0"]
-position = Vector2(0, 0.02)
-
-[node name="RopeSnapPoint2" parent="RopeBender" index="2"]
-position = Vector2(4, -3)
+[node name="RopeSnapPoint2" parent="RopeBender" index="1"]
+position = Vector2(5, -5)
 
 [node name="CollisionShape2D" parent="RopeBender/RopeSnapPoint2" index="0"]
 position = Vector2(0, 0.02)
 
-[node name="CollisionShape2D" parent="RopeBender/RopeSnapPoint3" index="0"]
-position = Vector2(1, 2.02)
+[node name="RopeSnapPoint3" parent="RopeBender" index="2"]
+position = Vector2(5, 5)
 
 [node name="RopeAnchorPoint" parent="RopeBender/RopeSnapPoint3" index="1"]
-position = Vector2(3, 4.02)
+position = Vector2(2, 2)
 
-[node name="CollisionShape2D" parent="RopeBender/RopeSnapPoint4" index="0"]
-position = Vector2(0, 2.02)
+[node name="RopeSnapPoint5" parent="RopeBender" index="3"]
+position = Vector2(-5, 5)
 
-[node name="RopeAnchorPoint" parent="RopeBender/RopeSnapPoint4" index="1"]
-position = Vector2(0, 4.02)
+[node name="RopeSnapPoint6" parent="RopeBender" index="4"]
+position = Vector2(-5, -5)
 
-[node name="CollisionShape2D" parent="RopeBender/RopeSnapPoint5" index="0"]
-position = Vector2(-1, 2.02)
+[node name="ApproachPlayerDirector" parent="." node_paths=PackedStringArray("subject") instance=ExtResource("5_lvkhx")]
+chase_distance = 50
+subject = NodePath("..")
 
-[node name="RopeAnchorPoint" parent="RopeBender/RopeSnapPoint5" index="1"]
-position = Vector2(-3, 4.02)
+[node name="StateMachine" parent="." node_paths=PackedStringArray("director", "starting_state") instance=ExtResource("6_yfvwm")]
+director = NodePath("../ApproachPlayerDirector")
+starting_state = NodePath("Idle")
 
-[node name="RopeSnapPoint6" parent="RopeBender" index="6"]
-position = Vector2(-4, -3)
+[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("move_state") instance=ExtResource("7_61fu6")]
+move_state = NodePath("../Move")
+
+[node name="Move" parent="StateMachine" node_paths=PackedStringArray("idle_state") instance=ExtResource("8_a47ux")]
+idle_state = NodePath("../Idle")
 
 [editable path="RopeBender"]
-[editable path="RopeBender/RopeSnapPoint"]
 [editable path="RopeBender/RopeSnapPoint2"]
 [editable path="RopeBender/RopeSnapPoint3"]
-[editable path="RopeBender/RopeSnapPoint4"]
 [editable path="RopeBender/RopeSnapPoint5"]
 [editable path="RopeBender/RopeSnapPoint6"]

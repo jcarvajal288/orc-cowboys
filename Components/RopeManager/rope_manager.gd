@@ -59,20 +59,44 @@ func make_rope(endpoint_one: Node2D, endpoint_two: Node2D) -> Rope:
 	return new_rope
 
 
+func cleanup_ropes() -> void:
+	for child in get_children():
+		if is_instance_of(child, Rope) and not child.is_valid():
+			child.queue_free()
+	linked_ropes = linked_ropes.filter(func(lr): 
+		return lr[0].is_valid() and lr[1].is_valid()
+	)
+
+
+func ropes_are_linked(rope1: Rope, rope2: Rope) -> bool:
+	return linked_ropes.any(func(lr):
+		return (
+			lr[0] == rope1 and lr[1] == rope2 or 
+			lr[0] == rope2 and lr[1] == rope1
+		)
+	)
+
+
 func _process(_delta: float) -> void:
+	cleanup_ropes()
 	for linked_rope in linked_ropes:
 		if has_unwound(linked_rope):
 			call_deferred("unwind_ropes", linked_rope)
-	var ropes = get_children().filter(func(child): return is_instance_of(child, Rope))
+	var ropes = get_children().filter(func(child): 
+		return is_instance_of(child, Rope) and is_instance_valid(child)
+	)
 	for i in ropes.size():
 		for j in range(i+1, ropes.size()):
-			var line1 = ropes[i].get_line_segment()
-			var line2 = ropes[j].get_line_segment()
-			var intersection = find_intersection(line1, line2)
-			if intersection != Vector2.INF:
-				var loop = find_loop(intersection, ropes[i], ropes[j])
-				loop_scored.emit(loop)
-				call_deferred("reset_ropes")
+			if ropes_are_linked(ropes[i], ropes[j]):
+				continue
+			elif ropes[i].is_valid() and ropes[j].is_valid():
+				var line1 = ropes[i].get_line_segment()
+				var line2 = ropes[j].get_line_segment()
+				var intersection = find_intersection(line1, line2)
+				if intersection != Vector2.INF:
+					var loop = find_loop(intersection, ropes[i], ropes[j])
+					loop_scored.emit(loop)
+					call_deferred("reset_ropes")
 
 
 func has_unwound(linked_rope: Array) -> bool:

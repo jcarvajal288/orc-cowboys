@@ -21,4 +21,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
+	if self.name == "RedCowboy":
+		Global.red_cowboy_location = self.global_position
+	else:
+		Global.blue_cowboy_location = self.global_position
 	$StateMachine.process_frame(delta)

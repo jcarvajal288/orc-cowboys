@@ -40,3 +40,7 @@ func _on_area_entered(snap_point: Area2D):
 
 func get_line_segment() -> Array[Vector2]:
 	return [endpoint_one.global_position, endpoint_two.global_position]
+
+
+func is_valid() -> bool:
+	return is_instance_valid(endpoint_one) and is_instance_valid(endpoint_two)
