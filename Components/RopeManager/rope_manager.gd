@@ -53,6 +53,16 @@ func _physics_process(_delta: float) -> void:
 	for linked_rope in linked_ropes:
 		if has_unwound(linked_rope):
 			unwind_ropes(linked_rope)
+	var ropes = get_children().filter(func(child): return is_instance_of(child, Rope))
+	# print("======")
+	# print(ropes.size())
+	for i in ropes.size():
+		for j in range(i+1, ropes.size()):
+			# print("%d,%d" % [i, j])
+			var rope1 = ropes[i]
+			var rope2 = ropes[j]
+			if (do_segments_intersect(rope1.get_line_segment(), rope2.get_line_segment())):
+				print("intersection found")
 
 
 func has_unwound(linked_rope: Array) -> bool:
@@ -70,7 +80,8 @@ func has_unwound(linked_rope: Array) -> bool:
 	var rope_line: Array[Vector2] = endpoints.filter(func(endpoint): return endpoint != common_point)
 	# the two ropes have unwound from their anchor point if the line segment from the common
 	# point to the center point and the one from the far rope endpoints do not intersect
-	return not do_lines_intersect(rope_line, center_line)
+	return not does_line_intersect_ray(rope_line, center_line)
+
 
 func find_linked_rope_common_point(endpoints: Array[Vector2]) -> Vector2:
 	for i in endpoints.size():
@@ -79,7 +90,7 @@ func find_linked_rope_common_point(endpoints: Array[Vector2]) -> Vector2:
 	return endpoints[0]
 
 
-func do_lines_intersect(line: Array[Vector2], ray: Array[Vector2]) -> bool:
+func does_line_intersect_ray(line: Array[Vector2], ray: Array[Vector2]) -> bool:
 	# taken from here: https://stackoverflow.com/questions/14307158/how-do-you-check-for-intersection-between-a-line-segment-and-a-line-ray-emanatin
 	if (line.size() != 2 or ray.size() != 2):
 		return false
@@ -96,6 +107,28 @@ func do_lines_intersect(line: Array[Vector2], ray: Array[Vector2]) -> bool:
 	var t2 = v1.dot(v3) / dot
 
 	return (t1 >= 0.0 and (t2 >= 0.0 and t2 <= 1.0))
+
+
+func do_segments_intersect(line1: Array[Vector2], line2: Array[Vector2]) -> bool:
+	var are_counterclockwise = func(i: Vector2, j: Vector2, k: Vector2) -> bool:
+		return (k.y - i.y) * (j.x - i.x) > (j.y - i.y) * (k.x - i.x)
+	var a = line1[0]
+	var b = line1[1]
+	var c = line2[0]
+	var d = line2[1]
+	# check for connected lines
+	var points = [a, b, c, d]
+	for i in points.size():
+		for j in range(i+1, points.size()):
+			if (points[i] == points[j]):
+				return false
+	return (
+		are_counterclockwise.call(a,c,d) !=
+		are_counterclockwise.call(b,c,d) and
+		are_counterclockwise.call(a,b,c) !=
+		are_counterclockwise.call(a,b,d)
+	)
+
 
 
 func unwind_ropes(linked_rope: Array) -> void:
