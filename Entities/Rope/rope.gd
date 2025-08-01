@@ -31,11 +31,12 @@ func _process(_delta: float) -> void:
 
 
 func _on_area_entered(snap_point: Area2D):
-	# print("rope detected")
-	if (snap_point is RopeSnapPoint):
-		var anchor_point = snap_point.rope_anchor_point
-		if not (anchor_point == endpoint_one or anchor_point == endpoint_two):
-			rope_bent.emit(self, snap_point)
+	if (is_instance_of(endpoint_one, Cowboy) or is_instance_of(endpoint_two, Cowboy)):
+		print("rope detected")
+		if (snap_point is RopeSnapPoint):
+			var anchor_point = snap_point.rope_anchor_point
+			if not (anchor_point == endpoint_one or anchor_point == endpoint_two):
+				rope_bent.emit(self, snap_point)
 
 
 func get_line_segment() -> Array[Vector2]:

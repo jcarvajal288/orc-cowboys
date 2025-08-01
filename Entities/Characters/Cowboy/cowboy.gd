@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Cowboy extends CharacterBody2D
 
 @export var sprite_texture: Texture2D
 

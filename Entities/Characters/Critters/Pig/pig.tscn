@@ -221,12 +221,22 @@ animate_with_facing = true
 [node name="RopeBender" parent="." instance=ExtResource("6_3xngq")]
 position = Vector2(-1.025, 0)
 
+[node name="RopeSnapPoint2" parent="RopeBender" index="1"]
+position = Vector2(3, -3)
+
+[node name="RopeSnapPoint3" parent="RopeBender" index="2"]
+position = Vector2(3, 3)
+
+[node name="RopeSnapPoint5" parent="RopeBender" index="3"]
+position = Vector2(-3, 3)
+
+[node name="RopeSnapPoint6" parent="RopeBender" index="4"]
+position = Vector2(-3, -3)
+
 [node name="MeanderDirector" parent="." instance=ExtResource("8_sju1t")]
 
 [editable path="RopeBender"]
-[editable path="RopeBender/RopeSnapPoint"]
 [editable path="RopeBender/RopeSnapPoint2"]
 [editable path="RopeBender/RopeSnapPoint3"]
-[editable path="RopeBender/RopeSnapPoint4"]
 [editable path="RopeBender/RopeSnapPoint5"]
 [editable path="RopeBender/RopeSnapPoint6"]

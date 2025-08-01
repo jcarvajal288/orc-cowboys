@@ -21,10 +21,14 @@ func receive_rope_bent_signal(old_rope: Rope, bend_point: RopeSnapPoint) -> void
 
 
 func bend_rope(old_rope: Rope, bend_point: RopeSnapPoint) -> void:
+	print("BENDING ROPE")
+	print(get_children().size())
 	var rope1 = make_rope(old_rope.endpoint_one, bend_point.rope_anchor_point)
 	var rope2 = make_rope(bend_point.rope_anchor_point, old_rope.endpoint_two)
 	link_new_ropes(old_rope, rope1, rope2, bend_point)
 	delete_rope(old_rope)
+	print(get_children().size())
+	print("END BENDING ROPE")
 
 
 func link_new_ropes(old_rope: Rope, rope1: Rope, rope2: Rope, bend_point: RopeSnapPoint) -> void:
@@ -50,30 +54,33 @@ func delete_rope(rope: Rope) -> void:
 
 
 func make_rope(endpoint_one: Node2D, endpoint_two: Node2D) -> Rope:
+	print("make rope")
+	print(get_children().size())
 	var new_rope = rope_scene.instantiate()
 	new_rope.endpoint_one = endpoint_one
 	new_rope.endpoint_two = endpoint_two
 	new_rope.rope_bent.connect(receive_rope_bent_signal)
 	add_child(new_rope)
+	print("end make rope")
 	return new_rope
 
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	for linked_rope in linked_ropes:
 		if has_unwound(linked_rope):
-			unwind_ropes(linked_rope)
-	var ropes = get_children().filter(func(child): return is_instance_of(child, Rope))
-	for i in ropes.size():
-		for j in range(i+1, ropes.size()):
-			var line1 = ropes[i].get_line_segment()
-			var line2 = ropes[j].get_line_segment()
-			var do_bool = do_segments_intersect(line1, line2)
-			if do_bool:
-				reset_ropes()
-				print("true")
-			# var intersection = find_intersection(line1, line2)
-			# if intersection != Vector2.INF:
-			# 	reset_ropes()
+			call_deferred("unwind_ropes", linked_rope)
+	# var ropes = get_children().filter(func(child): return is_instance_of(child, Rope))
+	# for i in ropes.size():
+	# 	for j in range(i+1, ropes.size()):
+	# 		var line1 = ropes[i].get_line_segment()
+	# 		var line2 = ropes[j].get_line_segment()
+	# 		var do_bool = do_segments_intersect(line1, line2)
+	# 		if do_bool:
+	# 			reset_ropes()
+	# 			print("true")
+	# 		# var intersection = find_intersection(line1, line2)
+	# 		# if intersection != Vector2.INF:
+	# 		# 	reset_ropes()
 
 
 func has_unwound(linked_rope: Array) -> bool:
@@ -164,6 +171,8 @@ func find_intersection(line1: Array[Vector2], line2: Array[Vector2]) -> Vector2:
 
 
 func unwind_ropes(linked_rope: Array) -> void:
+	# print("unwinding")
+	# print(get_children().size())
 	var rope1: Rope = linked_rope[0]
 	var rope2: Rope = linked_rope[1]
 	var new_rope = null
@@ -188,6 +197,7 @@ func unwind_ropes(linked_rope: Array) -> void:
 	)
 	delete_rope(rope1)
 	delete_rope(rope2)
+	# print("done unwinding")
 
 
 func reset_ropes():
