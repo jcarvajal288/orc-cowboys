@@ -1,5 +1,6 @@
 extends Node
 
+signal points_scored
 
 func _ready() -> void:
 	$ScoreArea.body_entered.connect(score_critter)
@@ -13,7 +14,6 @@ func disable_score_area(b: bool) -> void:
 
 
 func score_loop(loop: Array) -> void:
-	print("score loop")
 	$ScoreArea/LoopPolygon.polygon = loop
 	$ScoreArea/CollisionPolygon2D.polygon = loop
 	disable_score_area(false)
@@ -24,5 +24,5 @@ func score_loop(loop: Array) -> void:
 
 func score_critter(body: Node2D) -> void:
 	if is_instance_of(body, Critter):
-		print("scored " + body.name)
+		points_scored.emit(body.score)
 		body.queue_free()

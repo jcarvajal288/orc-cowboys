@@ -9,4 +9,4 @@ func _ready() -> void:
 
 func change_score(amount: int) -> void:
 	score += amount
-	$Label.text = score
+	$Label.text = "%d" % score
