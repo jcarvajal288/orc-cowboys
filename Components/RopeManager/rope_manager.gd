@@ -69,7 +69,7 @@ func _process(_delta: float) -> void:
 			var line2 = ropes[j].get_line_segment()
 			var intersection = find_intersection(line1, line2)
 			if intersection != Vector2.INF:
-				# reset_ropes()
+				find_loop(intersection, ropes[i], ropes[j])
 				call_deferred("reset_ropes")
 
 
@@ -158,8 +158,6 @@ func find_intersection(line1: Array[Vector2], line2: Array[Vector2]) -> Vector2:
 		return Vector2.INF # if b == 0, the lines are parallel. if a == 0 and b == 0, colinear
 	
 
-
-
 func unwind_ropes(linked_rope: Array) -> void:
 	var rope1: Rope = linked_rope[0]
 	var rope2: Rope = linked_rope[1]
@@ -193,3 +191,68 @@ func reset_ropes():
 			child.queue_free()
 	linked_ropes = []
 	make_rope(red_cowboy, blue_cowboy)	
+
+
+func find_loop(intersection: Vector2, rope1: Rope, rope2: Rope) -> Array:
+	var all_ropes = get_children()#.filter(func(child): is_instance_of(child, Rope))
+	var all_nodes = []
+	for rope in all_ropes:
+		var p = rope.endpoint_one.global_position
+		if not all_nodes.has(p):
+			all_nodes.append(p)
+		var q = rope.endpoint_two.global_position
+		if not all_nodes.has(q):
+			all_nodes.append(q)
+	all_nodes.append(intersection)
+
+	var adjacency_matrix = Array()
+	adjacency_matrix.resize(all_nodes.size())
+	for i in range(adjacency_matrix.size()):
+		adjacency_matrix[i] = Array()
+		adjacency_matrix[i].resize(all_nodes.size())
+		for j in range(adjacency_matrix[i].size()):
+			adjacency_matrix[i][j] = false
+
+	for rope in all_ropes:
+		var index1 = all_nodes.find(rope.endpoint_one.global_position)
+		var index2 = all_nodes.find(rope.endpoint_two.global_position)
+		if (rope == rope1 or rope == rope2): # attach these to the intersection point
+			adjacency_matrix[index1][-1] = true
+			adjacency_matrix[index2][-1] = true
+			adjacency_matrix[-1][index1] = true
+			adjacency_matrix[-1][index2] = true
+		else:
+			adjacency_matrix[index1][index2] = true
+			adjacency_matrix[index2][index1] = true
+
+	# for row in adjacency_matrix:
+	# 	print(row)
+
+	var cycles = find_all_cycles(adjacency_matrix)
+	var loop = cycles[0].map(func(i): return all_nodes[i])
+	print(loop)
+	return loop
+
+
+func find_all_cycles(adjacency_matrix: Array) -> Array:
+	var num_nodes = adjacency_matrix.size()
+	var all_cycles = Array()
+
+	var dfs := func(node, path, visited, dfs_func) -> void:
+		visited[node] = true
+		path.append(node)
+		for neighbor in range(num_nodes):
+			if (adjacency_matrix[node][neighbor]):
+				if neighbor == path[0] and path.size() > 2:
+					all_cycles.append(path.duplicate(true))
+				elif not visited[neighbor]:
+					dfs_func.call(neighbor, path, visited.duplicate(true), dfs_func)
+	
+	for start_node in range(num_nodes):
+		var visited = Array()
+		visited.resize(num_nodes)
+		for i in range(visited.size()):
+			visited[i] = false
+			dfs.call(start_node, Array(), visited, dfs)
+	
+	return all_cycles
