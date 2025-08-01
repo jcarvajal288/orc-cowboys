@@ -26,8 +26,10 @@ wasd_movement = true
 [node name="Barrel" parent="." instance=ExtResource("6_7mycd")]
 position = Vector2(159, 107.585)
 
-[node name="RopeManager" parent="." instance=ExtResource("6_272bh")]
+[node name="RopeManager" parent="." node_paths=PackedStringArray("red_cowboy", "blue_cowboy") instance=ExtResource("6_272bh")]
 rope_scene = ExtResource("5_lquwl")
+red_cowboy = NodePath("../RedCowboy")
+blue_cowboy = NodePath("../BlueCowboy")
 
 [node name="Rope" parent="RopeManager" node_paths=PackedStringArray("endpoint_one", "endpoint_two") instance=ExtResource("5_lquwl")]
 endpoint_one = NodePath("../../RedCowboy")

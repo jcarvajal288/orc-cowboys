@@ -1,8 +1,11 @@
 extends Node
 
 @export var rope_scene: PackedScene
+@export var red_cowboy: Node2D
+@export var blue_cowboy: Node2D
 
 @onready var linked_ropes: Array = []
+
 
 
 func _ready() -> void:
@@ -54,15 +57,12 @@ func _physics_process(_delta: float) -> void:
 		if has_unwound(linked_rope):
 			unwind_ropes(linked_rope)
 	var ropes = get_children().filter(func(child): return is_instance_of(child, Rope))
-	# print("======")
-	# print(ropes.size())
 	for i in ropes.size():
 		for j in range(i+1, ropes.size()):
-			# print("%d,%d" % [i, j])
 			var rope1 = ropes[i]
 			var rope2 = ropes[j]
 			if (do_segments_intersect(rope1.get_line_segment(), rope2.get_line_segment())):
-				print("intersection found")
+				reset_ropes()
 
 
 func has_unwound(linked_rope: Array) -> bool:
@@ -156,3 +156,12 @@ func unwind_ropes(linked_rope: Array) -> void:
 	)
 	delete_rope(rope1)
 	delete_rope(rope2)
+
+
+func reset_ropes():
+	for child in get_children():
+		if (is_instance_of(child, Rope)):
+			child.queue_free()
+	linked_ropes = []
+	var new_rope = make_rope(red_cowboy, blue_cowboy)	
+	add_child(new_rope)
