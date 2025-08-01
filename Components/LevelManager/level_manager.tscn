@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://rbvlih3jaros"]
+
+[ext_resource type="Script" uid="uid://4237u1hkupqd" path="res://Components/LevelManager/level_manager.gd" id="1_uiuky"]
+
+[node name="LevelManager" type="Node"]
+script = ExtResource("1_uiuky")
+
+[node name="LoopPolygon" type="Polygon2D" parent="."]

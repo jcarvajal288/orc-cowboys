@@ -6,6 +6,7 @@ extends Node
 
 @onready var linked_ropes: Array = []
 
+signal loop_scored
 
 
 func _ready() -> void:
@@ -69,7 +70,8 @@ func _process(_delta: float) -> void:
 			var line2 = ropes[j].get_line_segment()
 			var intersection = find_intersection(line1, line2)
 			if intersection != Vector2.INF:
-				find_loop(intersection, ropes[i], ropes[j])
+				var loop = find_loop(intersection, ropes[i], ropes[j])
+				loop_scored.emit(loop)
 				call_deferred("reset_ropes")
 
 
@@ -225,16 +227,13 @@ func find_loop(intersection: Vector2, rope1: Rope, rope2: Rope) -> Array:
 			adjacency_matrix[index1][index2] = true
 			adjacency_matrix[index2][index1] = true
 
-	# for row in adjacency_matrix:
-	# 	print(row)
-
 	var cycles = find_all_cycles(adjacency_matrix)
 	var loop = cycles[0].map(func(i): return all_nodes[i])
-	print(loop)
 	return loop
 
 
 func find_all_cycles(adjacency_matrix: Array) -> Array:
+	# took from here: https://tech-champion.com/programming/python-programming/python-cycle-detection-in-adjacency-matrix-finding-all-simple-cycles/
 	var num_nodes = adjacency_matrix.size()
 	var all_cycles = Array()
 

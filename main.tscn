@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://lnkxpkumeej5"]
+[gd_scene load_steps=10 format=3 uid="uid://lnkxpkumeej5"]
 
 [ext_resource type="PackedScene" uid="uid://cnqrm23ptl3i1" path="res://Level/level.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dafh3ycio256o" path="res://Entities/Characters/Cowboy/cowboy.tscn" id="2_0xm2m"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dfmgg8xlsnyc6" path="res://Entities/Barrel/barrel.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cvkvfgfqxqtei" path="res://Components/RopeManager/rope_manager.tscn" id="6_272bh"]
 [ext_resource type="PackedScene" uid="uid://dqhro245jm7o3" path="res://Entities/Characters/Critters/Pig/pig.tscn" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://rbvlih3jaros" path="res://Components/LevelManager/level_manager.tscn" id="9_kek77"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -47,6 +48,10 @@ position = Vector2(52, -45)
 
 [node name="Barrel4" parent="Pig" instance=ExtResource("6_7mycd")]
 position = Vector2(-16, 27)
+
+[node name="LevelManager" parent="." instance=ExtResource("9_kek77")]
+
+[connection signal="loop_scored" from="RopeManager" to="LevelManager" method="score_loop"]
 
 [editable path="RedCowboy"]
 [editable path="BlueCowboy"]
