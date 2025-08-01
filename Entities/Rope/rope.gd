@@ -30,11 +30,12 @@ func _process(_delta: float) -> void:
 	collision_shape.position = $TextureRect.size / 2.0
 
 
-func _on_area_entered(snap_point: RopeSnapPoint):
+func _on_area_entered(snap_point: Area2D):
 	# print("rope detected")
-	var anchor_point = snap_point.rope_anchor_point
-	if not (anchor_point == endpoint_one or anchor_point == endpoint_two):
-		rope_bent.emit(self, snap_point)
+	if (snap_point is RopeSnapPoint):
+		var anchor_point = snap_point.rope_anchor_point
+		if not (anchor_point == endpoint_one or anchor_point == endpoint_two):
+			rope_bent.emit(self, snap_point)
 
 
 func get_line_segment() -> Array[Vector2]:

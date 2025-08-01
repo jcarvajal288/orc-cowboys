@@ -11,12 +11,16 @@ extends Node
 func _ready() -> void:
 	for child in get_children():
 		if child is Rope:
-			child.rope_bent.connect(bend_rope)
+			child.rope_bent.connect(receive_rope_bent_signal)
+
+
+func receive_rope_bent_signal(old_rope: Rope, bend_point: RopeSnapPoint) -> void:
+	if not is_instance_valid(old_rope):
+		return
+	call_deferred("bend_rope", old_rope, bend_point)
 
 
 func bend_rope(old_rope: Rope, bend_point: RopeSnapPoint) -> void:
-	if not is_instance_valid(old_rope):
-		return
 	var rope1 = make_rope(old_rope.endpoint_one, bend_point.rope_anchor_point)
 	var rope2 = make_rope(bend_point.rope_anchor_point, old_rope.endpoint_two)
 	link_new_ropes(old_rope, rope1, rope2, bend_point)
@@ -39,15 +43,17 @@ func link_new_ropes(old_rope: Rope, rope1: Rope, rope2: Rope, bend_point: RopeSn
 
 
 func delete_rope(rope: Rope) -> void:
-	rope.rope_bent.disconnect(bend_rope)
-	rope.queue_free()
+	if (is_instance_valid(rope)):
+		if (rope.rope_bent.is_connected(receive_rope_bent_signal)):
+			rope.rope_bent.disconnect(receive_rope_bent_signal)
+		rope.queue_free()
 
 
 func make_rope(endpoint_one: Node2D, endpoint_two: Node2D) -> Rope:
 	var new_rope = rope_scene.instantiate()
 	new_rope.endpoint_one = endpoint_one
 	new_rope.endpoint_two = endpoint_two
-	new_rope.rope_bent.connect(bend_rope)
+	new_rope.rope_bent.connect(receive_rope_bent_signal)
 	add_child(new_rope)
 	return new_rope
 
@@ -61,10 +67,13 @@ func _physics_process(_delta: float) -> void:
 		for j in range(i+1, ropes.size()):
 			var line1 = ropes[i].get_line_segment()
 			var line2 = ropes[j].get_line_segment()
-			# if (do_segments_intersect(rope1.get_line_segment(), rope2.get_line_segment())):
-			var intersection = find_intersection(line1, line2)
-			if intersection != Vector2.INF:
+			var do_bool = do_segments_intersect(line1, line2)
+			if do_bool:
 				reset_ropes()
+				print("true")
+			# var intersection = find_intersection(line1, line2)
+			# if intersection != Vector2.INF:
+			# 	reset_ropes()
 
 
 func has_unwound(linked_rope: Array) -> bool:
@@ -142,10 +151,8 @@ func find_intersection(line1: Array[Vector2], line2: Array[Vector2]) -> Vector2:
 	var y3 = line2[0].y
 	var x4 = line2[1].x
 	var y4 = line2[1].y
-	var a = ((x4 - x3) * (y3 - y1) - (y4 - y3) * (x3 - x1) /
-			 (x4 - x3) * (y2 - y1) - (y4 - y3) * (x2 - x1))
-	var b = ((x2 - x1) * (y3 - y1) - (y2 - y1) * (x3 - x1) /
-			 (x4 - x3) * (y2 - y1) - (y4 - y3) * (x2 - x1))
+	var a = (((x4 - x3) * (y3 - y1)) - ((y4 - y3) * (x3 - x1))) / (((x4 - x3) * (y2 - y1)) - ((y4 - y3) * (x2 - x1)))
+	var b = (((x2 - x1) * (y3 - y1)) - ((y2 - y1) * (x3 - x1))) / (((x4 - x3) * (y2 - y1)) - ((y4 - y3) * (x2 - x1)))
 	if 0 < a and a <= 1 and 0 < b and b <= 1.0:
 		var px = x1 + a * (x2 - x1)
 		var py = y1 + a * (y2 - y1)
