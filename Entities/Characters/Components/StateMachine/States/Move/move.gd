@@ -1,8 +1,6 @@
 extends State
 
-@export var director: Director
 @export var idle_state: State
-
 
 
 func process_physics(_delta: float) -> State:

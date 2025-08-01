@@ -1,5 +1,6 @@
 class_name StateMachine extends Node
 
+@export var director: Director
 @export var starting_state: State
 
 var current_state: State
@@ -7,6 +8,7 @@ var current_state: State
 func init(subject: CharacterBody2D) -> void:
 	for child in get_children():
 		child.subject = subject
+		child.director = director
 	change_state(starting_state)
 
 

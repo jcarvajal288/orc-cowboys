@@ -1,6 +1,5 @@
 extends State
 
-@export var director: Director
 @export var move_state: State
 
 

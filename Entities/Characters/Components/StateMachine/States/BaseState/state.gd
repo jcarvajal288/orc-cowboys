@@ -3,6 +3,8 @@ class_name State extends Node
 @export var animation_name: String
 @export var animate_with_facing: bool
 
+var director: Director
+
 var subject: CharacterBody2D
 
 func enter() -> void:

@@ -202,19 +202,18 @@ script = ExtResource("1_3e5f3")
 position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_3e5f3")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("director", "starting_state")]
 script = ExtResource("3_6stqi")
+director = NodePath("../MeanderDirector")
 starting_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://6tbqn5pwve8"
 
-[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("director", "move_state") instance=ExtResource("4_3xngq")]
-director = NodePath("../../MeanderDirector")
+[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("move_state") instance=ExtResource("4_3xngq")]
 move_state = NodePath("../Move")
 animation_name = "idle"
 animate_with_facing = true
 
-[node name="Move" parent="StateMachine" node_paths=PackedStringArray("director", "idle_state") instance=ExtResource("5_0io6k")]
-director = NodePath("../../MeanderDirector")
+[node name="Move" parent="StateMachine" node_paths=PackedStringArray("idle_state") instance=ExtResource("5_0io6k")]
 idle_state = NodePath("../Idle")
 animation_name = "move"
 animate_with_facing = true

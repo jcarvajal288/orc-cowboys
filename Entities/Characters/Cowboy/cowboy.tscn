@@ -203,17 +203,16 @@ script = ExtResource("2_vei2j")
 
 [node name="InputDirector" parent="." instance=ExtResource("3_d251f")]
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("2_8o4u2")]
+[node name="StateMachine" parent="." node_paths=PackedStringArray("director", "starting_state") instance=ExtResource("2_8o4u2")]
+director = NodePath("../InputDirector")
 starting_state = NodePath("Idle")
 
-[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("director", "move_state") instance=ExtResource("3_vei2j")]
-director = NodePath("../../InputDirector")
+[node name="Idle" parent="StateMachine" node_paths=PackedStringArray("move_state") instance=ExtResource("3_vei2j")]
 move_state = NodePath("../Move")
 animation_name = "idle"
 animate_with_facing = true
 
-[node name="Move" parent="StateMachine" node_paths=PackedStringArray("director", "idle_state") instance=ExtResource("4_d251f")]
-director = NodePath("../../InputDirector")
+[node name="Move" parent="StateMachine" node_paths=PackedStringArray("idle_state") instance=ExtResource("4_d251f")]
 idle_state = NodePath("../Idle")
 animation_name = "move"
 animate_with_facing = true
