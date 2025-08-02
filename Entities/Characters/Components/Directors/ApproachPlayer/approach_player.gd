@@ -1,6 +1,8 @@
 class_name ApproachPlayer extends MeanderDirector
 
 @export var chase_distance: int
+@export var attack_distance: int
+
 
 func _physics_process(_delta: float) -> void:
 	var red_distance = subject.global_position.distance_to(Global.arrow_cowboy_location)
@@ -10,3 +12,4 @@ func _physics_process(_delta: float) -> void:
 		movement_vector = (Global.arrow_cowboy_location - subject.global_position).normalized()
 	elif blue_distance == closest_cowboy and blue_distance <= chase_distance: 
 		movement_vector = (Global.wasd_cowboy_location - subject.global_position).normalized()
+	should_attack = closest_cowboy <= attack_distance
