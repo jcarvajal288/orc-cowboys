@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bffsvc134b25n" path="res://Entities/Characters/Components/Directors/ApproachPlayer/approach_player.tscn" id="5_lvkhx"]
 [ext_resource type="PackedScene" uid="uid://dsc06pk7yuvfo" path="res://Entities/Characters/Components/StateMachine/state_machine.tscn" id="6_yfvwm"]
 [ext_resource type="PackedScene" uid="uid://ccd6q3xth0lqq" path="res://Entities/Characters/Components/StateMachine/States/Idle/idle.tscn" id="7_61fu6"]
-[ext_resource type="PackedScene" uid="uid://dojgi4kb68nnj" path="res://Entities/Characters/Critters/Lion/States/Attack/attack.tscn" id="8_61fu6"]
+[ext_resource type="PackedScene" uid="uid://dojgi4kb68nnj" path="res://Entities/Characters/Components/StateMachine/States/Attack/attack.tscn" id="8_61fu6"]
 [ext_resource type="PackedScene" uid="uid://jua24evh8mco" path="res://Entities/Characters/Components/StateMachine/States/Move/move.tscn" id="8_a47ux"]
 [ext_resource type="PackedScene" uid="uid://vbdfi1rn6786" path="res://Entities/Characters/Components/Hitbox/hitbox.tscn" id="8_yfvwm"]
 

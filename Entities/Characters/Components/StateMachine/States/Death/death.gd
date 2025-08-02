@@ -8,7 +8,6 @@ func enter() -> void:
 
 
 func _on_death() -> void:
-	print("on death")
 	state_machine.change_state(self)
 
 

@@ -12,5 +12,4 @@ func take_hit():
 	current_health -= 1
 	took_damage.emit()
 	if current_health <= 0:
-		print("Health: died")
 		died.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dafh3ycio256o"]
+[gd_scene load_steps=30 format=3 uid="uid://dafh3ycio256o"]
 
 [ext_resource type="Texture2D" uid="uid://biho508pn20s" path="res://Entities/Characters/Cowboy/art/Orc_Cowboy_Red.png" id="1_32ll6"]
 [ext_resource type="Script" uid="uid://bmt6lplmgofy4" path="res://Entities/Characters/Cowboy/cowboy.gd" id="1_o8meo"]
@@ -9,7 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://jua24evh8mco" path="res://Entities/Characters/Components/StateMachine/States/Move/move.tscn" id="4_d251f"]
 [ext_resource type="PackedScene" uid="uid://77pp4qp6w4m6" path="res://Entities/Characters/Components/StateMachine/States/Death/death.tscn" id="8_mi8ef"]
 [ext_resource type="PackedScene" uid="uid://cxusqd4bbwl8r" path="res://Entities/Characters/Components/Hurtbox/hurtbox.tscn" id="9_dcnl0"]
-[ext_resource type="PackedScene" uid="uid://dojgi4kb68nnj" path="res://Entities/Characters/Critters/Lion/States/Attack/attack.tscn" id="9_iicxu"]
+[ext_resource type="PackedScene" uid="uid://dojgi4kb68nnj" path="res://Entities/Characters/Components/StateMachine/States/Attack/attack.tscn" id="9_iicxu"]
+[ext_resource type="PackedScene" uid="uid://b4xmoj5oonpfw" path="res://Entities/Characters/Components/StateMachine/States/Hit/hit.tscn" id="10_o6m57"]
 [ext_resource type="PackedScene" uid="uid://cqumhg1bhhmwr" path="res://Entities/Characters/Components/Health/health.tscn" id="10_vm7nu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_32ll6"]
@@ -29,6 +30,134 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_o6m57"]
+resource_name = "damagedDownLeft"
+length = 0.80001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.404157, 0.504157, 0.604157, 0.704157),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [64, 65, 66, 67, 64, 65, 66, 67]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_iicxu"]
+resource_name = "damagedDownRight"
+length = 0.80001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.395116, 0.495116, 0.595116, 0.695116),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [60, 61, 62, 63, 60, 61, 62, 63]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_i7gma"]
+resource_name = "damagedUpLeft"
+length = 0.80001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.399028, 0.499028, 0.599028, 0.699028),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [72, 73, 74, 75, 72, 73, 74, 75]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_d4kmk"]
+resource_name = "damagedUpRight"
+length = 0.80001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.397724, 0.497724, 0.597724, 0.697724),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [68, 69, 70, 71, 68, 69, 70, 71]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 
 [sub_resource type="Animation" id="Animation_3s6cq"]
 resource_name = "death"
@@ -45,6 +174,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.80001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_r6ivg"]
@@ -194,6 +335,10 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4lnog"]
 _data = {
 &"RESET": SubResource("Animation_4lnog"),
+&"damagedDownLeft": SubResource("Animation_o6m57"),
+&"damagedDownRight": SubResource("Animation_iicxu"),
+&"damagedUpLeft": SubResource("Animation_i7gma"),
+&"damagedUpRight": SubResource("Animation_d4kmk"),
 &"death": SubResource("Animation_3s6cq"),
 &"idleDownLeft": SubResource("Animation_r6ivg"),
 &"idleDownRight": SubResource("Animation_32ll6"),
@@ -247,6 +392,10 @@ state_machine = NodePath("..")
 idle_state = NodePath("../Idle")
 animation_name = "attaack"
 
+[node name="Hit" parent="StateMachine" node_paths=PackedStringArray("state_machine", "idle_state") instance=ExtResource("10_o6m57")]
+state_machine = NodePath("..")
+idle_state = NodePath("../Idle")
+
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("9_dcnl0")]
 health = NodePath("../Health")
 
@@ -258,6 +407,8 @@ debug_color = Color(0, 1, 0, 0.294118)
 [node name="Health" parent="." instance=ExtResource("10_vm7nu")]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Death" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Hit" method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="Hurtbox" to="StateMachine/Hit" method="_on_hit"]
 [connection signal="died" from="Health" to="StateMachine/Death" method="_on_death"]
 
 [editable path="Hurtbox"]

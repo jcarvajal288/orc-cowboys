@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4xmoj5oonpfw"]
+
+[ext_resource type="Script" uid="uid://cupc5kljyh2gx" path="res://Entities/Characters/Components/StateMachine/States/Hit/hit.gd" id="1_m1e1g"]
+
+[node name="Hit" type="Node"]
+script = ExtResource("1_m1e1g")
+animation_name = "damaged"
+animate_with_facing = true

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dojgi4kb68nnj"]
 
-[ext_resource type="Script" uid="uid://bxglop1mw7h4s" path="res://Entities/Characters/Critters/Lion/States/Attack/attack.gd" id="1_jiuio"]
+[ext_resource type="Script" uid="uid://bxglop1mw7h4s" path="res://Entities/Characters/Components/StateMachine/States/Attack/attack.gd" id="1_jiuio"]
 
 [node name="Attack" type="Node"]
 script = ExtResource("1_jiuio")
