@@ -1,4 +1,4 @@
-class_name ApproachPlayer extends Director
+class_name ApproachPlayer extends MeanderDirector
 
 @export var chase_distance: int
 
@@ -10,5 +10,3 @@ func _physics_process(_delta: float) -> void:
 		movement_vector = (Global.arrow_cowboy_location - subject.global_position).normalized()
 	elif blue_distance == closest_cowboy and blue_distance <= chase_distance: 
 		movement_vector = (Global.wasd_cowboy_location - subject.global_position).normalized()
-	else:
-		movement_vector = Vector2.ZERO

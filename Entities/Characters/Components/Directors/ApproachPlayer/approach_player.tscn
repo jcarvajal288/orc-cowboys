@@ -4,3 +4,5 @@
 
 [node name="ApproachPlayerDirector" type="Node"]
 script = ExtResource("1_mlyqq")
+
+[node name="Timer" type="Timer" parent="."]

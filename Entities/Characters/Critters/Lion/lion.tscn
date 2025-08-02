@@ -208,6 +208,9 @@ shape = SubResource("CircleShape2D_0xqtd")
 chase_distance = 50
 subject = NodePath("..")
 
+[node name="MeanderDirector" parent="ApproachPlayerDirector" index="0" node_paths=PackedStringArray("subject")]
+subject = NodePath("../..")
+
 [node name="StateMachine" parent="." node_paths=PackedStringArray("director", "starting_state") instance=ExtResource("6_yfvwm")]
 director = NodePath("../ApproachPlayerDirector")
 starting_state = NodePath("Idle")
@@ -225,4 +228,5 @@ subject = NodePath("..")
 shape = SubResource("CircleShape2D_61fu6")
 debug_color = Color(1, 0, 0, 0.294118)
 
+[editable path="ApproachPlayerDirector"]
 [editable path="Hitbox"]
