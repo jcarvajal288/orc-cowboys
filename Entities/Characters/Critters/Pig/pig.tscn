@@ -215,4 +215,5 @@ move_state = NodePath("../Move")
 [node name="Move" parent="StateMachine" node_paths=PackedStringArray("idle_state") instance=ExtResource("5_0io6k")]
 idle_state = NodePath("../Idle")
 
-[node name="MeanderDirector" parent="." instance=ExtResource("8_sju1t")]
+[node name="MeanderDirector" parent="." node_paths=PackedStringArray("subject") instance=ExtResource("8_sju1t")]
+subject = NodePath("..")

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dqhro245jm7o3" path="res://Entities/Characters/Critters/Pig/pig.tscn" id="2_738ss"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ibxtt"]
-size = Vector2(277, 181)
+size = Vector2(265, 157)
 
 [node name="CritterManager" type="Node2D"]
 script = ExtResource("1_tb01a")

@@ -6,6 +6,9 @@ extends Node2D
 @onready var max_critters = 8
 
 func _ready() -> void:
+	Global.spawn_area_position = $SpawnArea/CollisionShape2D.global_position
+	Global.spawn_area_rect = $SpawnArea/CollisionShape2D.shape.get_rect()
+	$SpawnArea.set_collision_mask_value(Global.CollisionLayer.SPAWN_AREA, true)
 	spawn_critters()
 
 
@@ -22,22 +25,14 @@ func spawn_critters():
 		spawn_pig()
 
 
-func get_spawn_point() -> Vector2:
-	var spawn_area = $SpawnArea/CollisionShape2D.shape.get_rect()
-	var random_x = Global.rng.randf_range(spawn_area.position.x, spawn_area.end.x)
-	var random_y = Global.rng.randf_range(spawn_area.position.y, spawn_area.end.y)
-	var spawn_area_position = $SpawnArea/CollisionShape2D.global_position
-	return Vector2(
-		spawn_area_position.x + random_x, 
-		spawn_area_position.y + random_y
-	)
-
 
 func spawn_pig():
 	var pig: Pig = pig_scene.instantiate()
-	var spawn_point = get_spawn_point()
+	var spawn_point = Global.get_random_point_in_spawn_area()
 	pig.global_position = spawn_point
 	$Critters.add_child(pig)
+	$SpawnArea.body_exited.connect(pig.has_left_spawn_area)
+	$SpawnArea.body_entered.connect(pig.has_entered_spawn_area)
 
 
 func _on_scoring_finished() -> void:

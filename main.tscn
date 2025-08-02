@@ -52,7 +52,7 @@ max_barrels = 5
 [node name="CritterManager" parent="." instance=ExtResource("13_w48qg")]
 
 [node name="CollisionShape2D" parent="CritterManager/SpawnArea" index="0"]
-position = Vector2(158.5, 119.5)
+position = Vector2(158.5, 118.5)
 debug_color = Color(1, 1, 1, 0.168627)
 
 [connection signal="scoring_finished" from="ScoreTracker" to="CritterManager" method="_on_scoring_finished"]
