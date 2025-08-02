@@ -26,13 +26,16 @@ wasd_movement = true
 
 [node name="ScoreTracker" parent="." instance=ExtResource("9_kek77")]
 
-[node name="BarrelPlacer" parent="." instance=ExtResource("8_kek77")]
+[node name="BarrelPlacer" parent="." node_paths=PackedStringArray("red_cowboy", "blue_cowboy") instance=ExtResource("8_kek77")]
+red_cowboy = NodePath("../RedCowboy")
+blue_cowboy = NodePath("../BlueCowboy")
 barrel_scene = ExtResource("6_7mycd")
+rope_scene = ExtResource("5_lquwl")
 
-[node name="Rope" parent="." node_paths=PackedStringArray("endpoint_one", "endpoint_two") instance=ExtResource("5_lquwl")]
+[node name="Rope" parent="BarrelPlacer" node_paths=PackedStringArray("endpoint_one", "endpoint_two") instance=ExtResource("5_lquwl")]
 position = Vector2(196, 7)
-endpoint_one = NodePath("../RedCowboy")
-endpoint_two = NodePath("../BlueCowboy")
+endpoint_one = NodePath("../../RedCowboy")
+endpoint_two = NodePath("../../BlueCowboy")
 
 [editable path="RedCowboy"]
 [editable path="BlueCowboy"]

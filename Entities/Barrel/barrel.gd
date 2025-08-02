@@ -1,0 +1,1 @@
+class_name Barrel extends StaticBody2D

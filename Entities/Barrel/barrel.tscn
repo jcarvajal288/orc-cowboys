@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfmgg8xlsnyc6"]
+[gd_scene load_steps=5 format=3 uid="uid://dfmgg8xlsnyc6"]
 
 [ext_resource type="Texture2D" uid="uid://cd5beg40c703k" path="res://Entities/Barrel/art/barrel.png" id="1_wkbkx"]
+[ext_resource type="Script" uid="uid://cl6ymbcpxw7bg" path="res://Entities/Barrel/barrel.gd" id="1_xp7jd"]
 [ext_resource type="PackedScene" uid="uid://cmrawgb3xnu8l" path="res://Components/RopeBender/rope_bender.tscn" id="2_wv1ew"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wv1ew"]
@@ -8,6 +9,7 @@ radius = 3.0
 height = 8.0
 
 [node name="Barrel" type="StaticBody2D"]
+script = ExtResource("1_xp7jd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_wkbkx")
@@ -17,18 +19,6 @@ position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_wv1ew")
 
 [node name="RopeBender" parent="." instance=ExtResource("2_wv1ew")]
-
-[node name="RopeSnapPoint2" parent="RopeBender" index="1"]
-position = Vector2(3, -3)
-
-[node name="RopeSnapPoint3" parent="RopeBender" index="2"]
-position = Vector2(3, 3)
-
-[node name="RopeSnapPoint5" parent="RopeBender" index="3"]
-position = Vector2(-3, 3)
-
-[node name="RopeSnapPoint6" parent="RopeBender" index="4"]
-position = Vector2(-3, -3)
 
 [editable path="RopeBender"]
 [editable path="RopeBender/RopeSnapPoint2"]
