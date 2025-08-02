@@ -13,29 +13,31 @@
 
 [node name="Level" parent="." instance=ExtResource("1_ig7tw")]
 
-[node name="RedCowboy" parent="." instance=ExtResource("2_0xm2m")]
+[node name="ArrowCowboy" parent="." instance=ExtResource("2_0xm2m")]
 position = Vector2(192, 170)
 sprite_texture = ExtResource("3_1bvp3")
 
-[node name="BlueCowboy" parent="." instance=ExtResource("2_0xm2m")]
+[node name="WasdCowboy" parent="." instance=ExtResource("2_0xm2m")]
 position = Vector2(90, 170)
 sprite_texture = ExtResource("4_lquwl")
 
-[node name="InputDirector" parent="BlueCowboy" index="3"]
+[node name="InputDirector" parent="WasdCowboy" index="3"]
 wasd_movement = true
 
 [node name="ScoreTracker" parent="." instance=ExtResource("9_kek77")]
 
-[node name="BarrelPlacer" parent="." node_paths=PackedStringArray("red_cowboy", "blue_cowboy") instance=ExtResource("8_kek77")]
-red_cowboy = NodePath("../RedCowboy")
-blue_cowboy = NodePath("../BlueCowboy")
+[node name="BarrelPlacer" parent="." node_paths=PackedStringArray("arrow_cowboy", "wasd_cowboy") instance=ExtResource("8_kek77")]
+arrow_cowboy = NodePath("../ArrowCowboy")
+wasd_cowboy = NodePath("../WasdCowboy")
 barrel_scene = ExtResource("6_7mycd")
 rope_scene = ExtResource("5_lquwl")
 
 [node name="Rope" parent="BarrelPlacer" node_paths=PackedStringArray("endpoint_one", "endpoint_two") instance=ExtResource("5_lquwl")]
 position = Vector2(196, 7)
-endpoint_one = NodePath("../../RedCowboy")
-endpoint_two = NodePath("../../BlueCowboy")
+endpoint_one = NodePath("../../ArrowCowboy")
+endpoint_two = NodePath("../../WasdCowboy")
 
-[editable path="RedCowboy"]
-[editable path="BlueCowboy"]
+[connection signal="loop_scored" from="BarrelPlacer" to="ScoreTracker" method="score_loop"]
+
+[editable path="ArrowCowboy"]
+[editable path="WasdCowboy"]
