@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://cexcakdwb1os6"]
+[gd_scene load_steps=4 format=3 uid="uid://cexcakdwb1os6"]
 
 [ext_resource type="Script" uid="uid://burpx5n6ka7uf" path="res://Components/BarrelPlacer/barrel_placer.gd" id="1_n24bx"]
+[ext_resource type="AudioStream" uid="uid://2j02lxl5jq8q" path="res://Components/BarrelPlacer/sfx/066_Equip_06.wav" id="2_skixa"]
+[ext_resource type="PackedScene" uid="uid://bmtxevkmg2ite" path="res://Entities/Rope/rope.tscn" id="3_gdy3i"]
 
 [node name="BarrelPlacer" type="Node"]
 script = ExtResource("1_n24bx")
+
+[node name="PlaceBarrelSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_skixa")
+
+[node name="Barrels" type="Node2D" parent="."]
+
+[node name="Ropes" type="Node2D" parent="."]
+
+[node name="Rope" parent="Ropes" instance=ExtResource("3_gdy3i")]

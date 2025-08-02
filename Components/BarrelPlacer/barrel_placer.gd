@@ -19,13 +19,13 @@ func _process(_delta: float) -> void:
 
 
 func get_all_ropes() -> Array:
-	return get_children().filter(func(child): 
+	return $Ropes.get_children().filter(func(child): 
 		return is_instance_of(child, Rope) and is_instance_valid(child)
 	)
 
 
 func get_all_barrels() -> Array:
-	return get_children().filter(func(child): 
+	return $Barrels.get_children().filter(func(child): 
 		return is_instance_of(child, Barrel) and is_instance_valid(child)
 	)
 
@@ -37,9 +37,11 @@ func place_barrel(cowboy: Cowboy) -> void:
 	var rope: Rope = rope_scene.instantiate()
 	barrel.position = cowboy.global_position
 	switch_out_ropes(cowboy, rope, barrel)
-	add_child(barrel)
-	add_child(rope)
+	$Barrels.add_child(barrel)
+	$Ropes.add_child(rope)
 	barrel_tracker.subtract_barrel()
+	$PlaceBarrelSFX.play()
+	
 
 
 func affix_stationary_ropes() -> void:
@@ -52,7 +54,7 @@ func affix_stationary_ropes() -> void:
 
 
 func switch_out_ropes(cowboy: Cowboy, new_rope: Rope, barrel: Barrel) -> void:
-	for old_rope in get_children():
+	for old_rope in $Ropes.get_children():
 		if old_rope is Rope:
 			if old_rope.endpoint_one == cowboy:
 				old_rope.endpoint_one = barrel	
@@ -66,7 +68,7 @@ func replace_with_stationary_rope(rope: Rope):
 	var stationary_rope: StationaryRope = stationary_rope_scene.instantiate()
 	stationary_rope.endpoint_one = rope.endpoint_one
 	stationary_rope.endpoint_two = rope.endpoint_two
-	add_child(stationary_rope)
+	$Ropes.add_child(stationary_rope)
 	rope.queue_free()
 
 
@@ -96,12 +98,14 @@ func look_for_rope_intersection() -> void:
 
 
 func reset_state():
-	for child in get_children():
-		child.queue_free()
+	for rope in get_all_ropes():
+		rope.queue_free()
+	for barrel in get_all_barrels():
+		barrel.queue_free()
 	var rope = rope_scene.instantiate()
 	rope.endpoint_one = wasd_cowboy
 	rope.endpoint_two = arrow_cowboy
-	add_child(rope)
+	$Ropes.add_child(rope)
 	barrel_tracker.reset()
 
 

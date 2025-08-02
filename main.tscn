@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://lnkxpkumeej5"]
+[gd_scene load_steps=16 format=3 uid="uid://lnkxpkumeej5"]
 
 [ext_resource type="Script" uid="uid://djbckq3a1so7s" path="res://game_controller.gd" id="1_dg77c"]
 [ext_resource type="PackedScene" uid="uid://cnqrm23ptl3i1" path="res://Level/level.tscn" id="1_ig7tw"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://bnvxq6x3ati5" path="res://UI/BarrelTracker/barrel_tracker.tscn" id="9_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cj28k6p08jmf8" path="res://Entities/Rope/stationary_rope.tscn" id="9_efxa6"]
 [ext_resource type="PackedScene" uid="uid://rbvlih3jaros" path="res://UI/ScoreTracker/score_tracker.tscn" id="9_kek77"]
-[ext_resource type="PackedScene" uid="uid://dwc4k5ercf3i4" path="res://Entities/Characters/Critters/Lion/lion.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://c08l4m5lgp1bs" path="res://Level/CritterManager/critter_manager.tscn" id="13_w48qg"]
 [ext_resource type="PackedScene" uid="uid://d243780ngc04u" path="res://UI/GameOverScreen/game_over_screen.tscn" id="13_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://bcashkxflhkca" path="res://UI/HealthBar/health_bar.tscn" id="15_2cqfq"]
@@ -37,6 +36,9 @@ wasd_movement = true
 
 [node name="ScoreTracker" parent="." instance=ExtResource("9_kek77")]
 
+[node name="BarrelTracker" parent="." instance=ExtResource("9_4c57u")]
+max_barrels = 5
+
 [node name="BarrelPlacer" parent="." node_paths=PackedStringArray("arrow_cowboy", "wasd_cowboy", "barrel_tracker") instance=ExtResource("8_kek77")]
 arrow_cowboy = NodePath("../ArrowCowboy")
 wasd_cowboy = NodePath("../WasdCowboy")
@@ -45,16 +47,11 @@ rope_scene = ExtResource("5_lquwl")
 stationary_rope_scene = ExtResource("9_efxa6")
 barrel_tracker = NodePath("../BarrelTracker")
 
-[node name="Rope" parent="BarrelPlacer" node_paths=PackedStringArray("endpoint_one", "endpoint_two") instance=ExtResource("5_lquwl")]
-position = Vector2(196, 7)
-endpoint_one = NodePath("../../ArrowCowboy")
-endpoint_two = NodePath("../../WasdCowboy")
-
-[node name="BarrelTracker" parent="." instance=ExtResource("9_4c57u")]
-max_barrels = 5
+[node name="Rope" parent="BarrelPlacer/Ropes" index="0" node_paths=PackedStringArray("endpoint_one", "endpoint_two")]
+endpoint_one = NodePath("../../../ArrowCowboy")
+endpoint_two = NodePath("../../../WasdCowboy")
 
 [node name="CritterManager" parent="." instance=ExtResource("13_w48qg")]
-lion_scene = ExtResource("10_4c57u")
 
 [node name="CollisionShape2D" parent="CritterManager/SpawnArea" index="0"]
 position = Vector2(158.5, 118.5)
@@ -83,14 +80,11 @@ position = Vector2(16, 230)
 health = NodePath("../WasdCowboy/Health")
 heart_scene = ExtResource("16_yaehf")
 
-[node name="Lion" parent="." instance=ExtResource("10_4c57u")]
-position = Vector2(161, 92)
-
 [connection signal="scoring_finished" from="ScoreTracker" to="CritterManager" method="_on_scoring_finished"]
-[connection signal="loop_scored" from="BarrelPlacer" to="ScoreTracker" method="score_loop"]
 
 [editable path="ArrowCowboy"]
 [editable path="ArrowCowboy/Hurtbox"]
 [editable path="WasdCowboy"]
 [editable path="WasdCowboy/Hurtbox"]
+[editable path="BarrelPlacer"]
 [editable path="CritterManager"]
