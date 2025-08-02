@@ -4,7 +4,10 @@ extends Node2D
 @export var lion_scene: PackedScene
 
 @onready var time_elapsed = 0.0
-@onready var max_critters = 6
+@onready var max_pigs = 6
+@onready var max_lions = 0
+@onready var pig_spawn_rate = 20
+@onready var lion_spawn_rate = 15
 
 func _ready() -> void:
 	Global.spawn_area_position = $SpawnArea/CollisionShape2D.global_position
@@ -15,14 +18,20 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time_elapsed += delta
+	update_critter_counts()
+
+
+func update_critter_counts():
+	max_lions = min(int(floor(time_elapsed)) / lion_spawn_rate, 4)
+	max_pigs = 6 + int(floor(time_elapsed)) / pig_spawn_rate
 
 
 func spawn_critters():
-	var current_critters = $Critters.get_children().filter(func(child): 
-		return child is Critter
+	var current_pigs = $Critters.get_children().filter(func(child): 
+		return child is Pig
 	)
-	var critters_to_spawn = max_critters - current_critters.size()
-	for i in range(critters_to_spawn):
+	var pigs_to_spawn = max_pigs - current_pigs.size()
+	for i in range(pigs_to_spawn):
 		spawn_pig()
 	spawn_lions()
 
@@ -40,8 +49,8 @@ func spawn_pig():
 func spawn_lions():
 	var spawn_points = $LionSpawnPoints.get_children()
 	spawn_points.shuffle()
-	spawn_lion(spawn_points[0].global_position)
-	spawn_lion(spawn_points[1].global_position)
+	for i in range(min(max_lions, spawn_points.size())):
+		spawn_lion(spawn_points[i].global_position)
 
 
 func spawn_lion(spawn_point: Vector2):

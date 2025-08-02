@@ -22,11 +22,11 @@ game_over_screen_scene = ExtResource("13_ycdy4")
 [node name="Level" parent="." instance=ExtResource("1_ig7tw")]
 
 [node name="ArrowCowboy" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(192, 170)
+position = Vector2(230, 120)
 sprite_texture = ExtResource("3_1bvp3")
 
 [node name="WasdCowboy" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(90, 170)
+position = Vector2(80, 120)
 sprite_texture = ExtResource("4_lquwl")
 
 [node name="InputDirector" parent="WasdCowboy" index="3"]
