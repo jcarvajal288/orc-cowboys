@@ -17,5 +17,5 @@ enum CollisionLayer {
 	ROPE = 2,
 }
 
-var red_cowboy_location = Vector2.ZERO
-var blue_cowboy_location = Vector2.ZERO
+var arrow_cowboy_location = Vector2.ZERO
+var wasd_cowboy_location = Vector2.ZERO
