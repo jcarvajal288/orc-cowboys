@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dafh3ycio256o"]
+[gd_scene load_steps=30 format=3 uid="uid://dafh3ycio256o"]
 
 [ext_resource type="Texture2D" uid="uid://biho508pn20s" path="res://Entities/Characters/Cowboy/art/Orc_Cowboy_Red.png" id="1_32ll6"]
 [ext_resource type="Script" uid="uid://bmt6lplmgofy4" path="res://Entities/Characters/Cowboy/cowboy.gd" id="1_o8meo"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://jua24evh8mco" path="res://Entities/Characters/Components/StateMachine/States/Move/move.tscn" id="4_d251f"]
 [ext_resource type="PackedScene" uid="uid://77pp4qp6w4m6" path="res://Entities/Characters/Components/StateMachine/States/Death/death.tscn" id="8_mi8ef"]
 [ext_resource type="PackedScene" uid="uid://cxusqd4bbwl8r" path="res://Entities/Characters/Components/Hurtbox/hurtbox.tscn" id="9_dcnl0"]
+[ext_resource type="AudioStream" uid="uid://56nkx5uc6de2" path="res://Entities/Characters/Cowboy/sfx/07_orc_damage_1.wav" id="10_d4kmk"]
 [ext_resource type="PackedScene" uid="uid://b4xmoj5oonpfw" path="res://Entities/Characters/Components/StateMachine/States/Hit/hit.tscn" id="10_o6m57"]
 [ext_resource type="PackedScene" uid="uid://cqumhg1bhhmwr" path="res://Entities/Characters/Components/Health/health.tscn" id="10_vm7nu"]
 
@@ -386,9 +387,13 @@ idle_state = NodePath("../Idle")
 [node name="Death" parent="StateMachine" node_paths=PackedStringArray("state_machine") instance=ExtResource("8_mi8ef")]
 state_machine = NodePath("..")
 
-[node name="Hit" parent="StateMachine" node_paths=PackedStringArray("state_machine", "idle_state") instance=ExtResource("10_o6m57")]
+[node name="Hit" parent="StateMachine" node_paths=PackedStringArray("state_machine", "idle_state", "sound_effect") instance=ExtResource("10_o6m57")]
 state_machine = NodePath("..")
 idle_state = NodePath("../Idle")
+sound_effect = NodePath("AudioStreamPlayer2D")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="StateMachine/Hit"]
+stream = ExtResource("10_d4kmk")
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("9_dcnl0")]
 health = NodePath("../Health")
