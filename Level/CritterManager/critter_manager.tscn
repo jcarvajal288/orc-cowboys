@@ -16,3 +16,13 @@ pig_scene = ExtResource("2_738ss")
 shape = SubResource("RectangleShape2D_ibxtt")
 
 [node name="Critters" type="Node" parent="."]
+
+[node name="LionSpawnPoints" type="Node2D" parent="."]
+
+[node name="SpawnPoint1" type="Marker2D" parent="LionSpawnPoints"]
+
+[node name="SpawnPoint2" type="Marker2D" parent="LionSpawnPoints"]
+
+[node name="SpawnPoint3" type="Marker2D" parent="LionSpawnPoints"]
+
+[node name="SpawnPoint4" type="Marker2D" parent="LionSpawnPoints"]

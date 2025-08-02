@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://lnkxpkumeej5"]
+[gd_scene load_steps=15 format=3 uid="uid://lnkxpkumeej5"]
 
 [ext_resource type="Script" uid="uid://djbckq3a1so7s" path="res://game_controller.gd" id="1_dg77c"]
 [ext_resource type="PackedScene" uid="uid://cnqrm23ptl3i1" path="res://Level/level.tscn" id="1_ig7tw"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bnvxq6x3ati5" path="res://UI/BarrelTracker/barrel_tracker.tscn" id="9_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cj28k6p08jmf8" path="res://Entities/Rope/stationary_rope.tscn" id="9_efxa6"]
 [ext_resource type="PackedScene" uid="uid://rbvlih3jaros" path="res://UI/ScoreTracker/score_tracker.tscn" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://dwc4k5ercf3i4" path="res://Entities/Characters/Critters/Lion/lion.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://c08l4m5lgp1bs" path="res://Level/CritterManager/critter_manager.tscn" id="13_w48qg"]
 [ext_resource type="PackedScene" uid="uid://d243780ngc04u" path="res://UI/GameOverScreen/game_over_screen.tscn" id="13_ycdy4"]
 
@@ -50,10 +51,23 @@ endpoint_two = NodePath("../../WasdCowboy")
 max_barrels = 5
 
 [node name="CritterManager" parent="." instance=ExtResource("13_w48qg")]
+lion_scene = ExtResource("10_4c57u")
 
 [node name="CollisionShape2D" parent="CritterManager/SpawnArea" index="0"]
 position = Vector2(158.5, 118.5)
 debug_color = Color(1, 1, 1, 0.168627)
+
+[node name="SpawnPoint1" parent="CritterManager/LionSpawnPoints" index="0"]
+position = Vector2(19, 33)
+
+[node name="SpawnPoint2" parent="CritterManager/LionSpawnPoints" index="1"]
+position = Vector2(299, 33)
+
+[node name="SpawnPoint3" parent="CritterManager/LionSpawnPoints" index="2"]
+position = Vector2(21, 207)
+
+[node name="SpawnPoint4" parent="CritterManager/LionSpawnPoints" index="3"]
+position = Vector2(297, 206)
 
 [connection signal="scoring_finished" from="ScoreTracker" to="CritterManager" method="_on_scoring_finished"]
 [connection signal="loop_scored" from="BarrelPlacer" to="ScoreTracker" method="score_loop"]

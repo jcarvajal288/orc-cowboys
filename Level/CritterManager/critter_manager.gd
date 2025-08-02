@@ -1,9 +1,10 @@
 extends Node2D
 
 @export var pig_scene: PackedScene
+@export var lion_scene: PackedScene
 
 @onready var time_elapsed = 0.0
-@onready var max_critters = 8
+@onready var max_critters = 6
 
 func _ready() -> void:
 	Global.spawn_area_position = $SpawnArea/CollisionShape2D.global_position
@@ -23,6 +24,7 @@ func spawn_critters():
 	var critters_to_spawn = max_critters - current_critters.size()
 	for i in range(critters_to_spawn):
 		spawn_pig()
+	spawn_lions()
 
 
 
@@ -33,6 +35,21 @@ func spawn_pig():
 	$Critters.add_child(pig)
 	$SpawnArea.body_exited.connect(pig.has_left_spawn_area)
 	$SpawnArea.body_entered.connect(pig.has_entered_spawn_area)
+
+
+func spawn_lions():
+	var spawn_points = $LionSpawnPoints.get_children()
+	spawn_points.shuffle()
+	spawn_lion(spawn_points[0].global_position)
+	spawn_lion(spawn_points[1].global_position)
+
+
+func spawn_lion(spawn_point: Vector2):
+	var lion: Lion = lion_scene.instantiate()
+	lion.global_position = spawn_point
+	$Critters.add_child(lion)
+	$SpawnArea.body_exited.connect(lion.has_left_spawn_area)
+	$SpawnArea.body_entered.connect(lion.has_entered_spawn_area)
 
 
 func _on_scoring_finished() -> void:
