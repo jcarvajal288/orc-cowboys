@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cd5beg40c703k" path="res://Entities/Barrel/art/barrel.png" id="2_00ocq"]
 
 [sub_resource type="SystemFont" id="SystemFont_ecwq2"]
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_00ocq"]
 font = SubResource("SystemFont_ecwq2")
@@ -12,16 +13,17 @@ font = SubResource("SystemFont_ecwq2")
 script = ExtResource("1_ecwq2")
 
 [node name="BarrelCanvas" type="CanvasLayer" parent="."]
-offset = Vector2(280.93, 10.45)
-transform = Transform2D(1, 0, 0, 1, 280.93, 10.45)
+offset = Vector2(280.93, 13.1)
+transform = Transform2D(1, 0, 0, 1, 280.93, 13.1)
 
 [node name="BarrelSprite" type="Sprite2D" parent="BarrelCanvas"]
+texture_filter = 1
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_00ocq")
 
 [node name="LabelCanvas" type="CanvasLayer" parent="."]
-offset = Vector2(292.24, -1.465)
-transform = Transform2D(1, 0, 0, 1, 292.24, -1.465)
+offset = Vector2(292.24, 1.14)
+transform = Transform2D(1, 0, 0, 1, 292.24, 1.14)
 
 [node name="Label" type="Label" parent="LabelCanvas"]
 offset_right = 40.0
