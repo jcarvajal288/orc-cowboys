@@ -10,7 +10,7 @@ var is_outside_spawn_area = false
 func _ready() -> void:
 	$Sprite2D.z_index = Global.RenderOrder.PLAYER
 	set_collision_layer_value(Global.CollisionLayer.SPAWN_AREA, true)
-	# set_collision_mask_value(Global.CollisionLayer.SPAWN_AREA, true)
+	set_collision_layer_value(Global.CollisionLayer.STATIONARY_ROPE, true)
 	$StateMachine.init(self)
 
 func _physics_process(delta: float) -> void:

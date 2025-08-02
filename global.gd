@@ -16,6 +16,7 @@ enum CollisionLayer {
 	WALL = 1,
 	ROPE = 2,
 	SPAWN_AREA = 3,
+	STATIONARY_ROPE = 4,
 }
 
 var arrow_cowboy_location = Vector2.ZERO
