@@ -44,3 +44,11 @@ func get_line_segment() -> Array[Vector2]:
 
 func is_valid() -> bool:
 	return is_instance_valid(endpoint_one) and is_instance_valid(endpoint_two)
+
+func print() -> void:
+	print("(%f,%f) - (%f,%f)" % [
+		endpoint_one.global_position.x,
+		endpoint_one.global_position.y,
+		endpoint_two.global_position.x,
+		endpoint_two.global_position.y,
+	])

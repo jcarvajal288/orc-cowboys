@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://lnkxpkumeej5"]
+[gd_scene load_steps=10 format=3 uid="uid://lnkxpkumeej5"]
 
 [ext_resource type="PackedScene" uid="uid://cnqrm23ptl3i1" path="res://Level/level.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dafh3ycio256o" path="res://Entities/Characters/Cowboy/cowboy.tscn" id="2_0xm2m"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bmtxevkmg2ite" path="res://Entities/Rope/rope.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dfmgg8xlsnyc6" path="res://Entities/Barrel/barrel.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cvkvfgfqxqtei" path="res://Components/RopeManager/rope_manager.tscn" id="6_272bh"]
-[ext_resource type="PackedScene" uid="uid://dqhro245jm7o3" path="res://Entities/Characters/Critters/Pig/pig.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://rbvlih3jaros" path="res://Components/ScoreTracker/score_tracker.tscn" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://dwc4k5ercf3i4" path="res://Entities/Characters/Critters/Lion/lion.tscn" id="10_4c57u"]
 
@@ -36,9 +35,6 @@ position = Vector2(196, 7)
 endpoint_one = NodePath("../../RedCowboy")
 endpoint_two = NodePath("../../BlueCowboy")
 
-[node name="Pig" parent="." instance=ExtResource("8_5vw27")]
-position = Vector2(154, 118)
-
 [node name="Barrel" parent="." instance=ExtResource("6_7mycd")]
 position = Vector2(229, 126)
 
@@ -60,9 +56,3 @@ position = Vector2(142, 67)
 
 [editable path="RedCowboy"]
 [editable path="BlueCowboy"]
-[editable path="Pig"]
-[editable path="Pig/RopeBender"]
-[editable path="Pig/RopeBender/RopeSnapPoint2"]
-[editable path="Pig/RopeBender/RopeSnapPoint3"]
-[editable path="Pig/RopeBender/RopeSnapPoint5"]
-[editable path="Pig/RopeBender/RopeSnapPoint6"]

@@ -40,7 +40,7 @@ func link_new_ropes(old_rope: Rope, rope1: Rope, rope2: Rope, bend_point: RopeSn
 	linked_ropes = linked_ropes.filter(func(linked_rope): 
 		return not linked_rope.has(old_rope)
 	)
-	linked_ropes.append([rope1, rope2, bend_point.center_point])
+	linked_ropes.append([rope1, rope2, bend_point])
 
 
 func delete_rope(rope: Rope) -> void:
@@ -79,12 +79,13 @@ func ropes_are_linked(rope1: Rope, rope2: Rope) -> bool:
 
 func _process(_delta: float) -> void:
 	cleanup_ropes()
-	for linked_rope in linked_ropes:
-		if has_unwound(linked_rope):
-			call_deferred("unwind_ropes", linked_rope)
+	# for linked_rope in linked_ropes:
+	# 	if has_unwound(linked_rope):
+	# 		call_deferred("unwind_ropes", linked_rope)
 	var ropes = get_children().filter(func(child): 
 		return is_instance_of(child, Rope) and is_instance_valid(child)
 	)
+	# print("#ropes: %d" % ropes.size())
 	for i in ropes.size():
 		for j in range(i+1, ropes.size()):
 			if ropes_are_linked(ropes[i], ropes[j]):
@@ -102,7 +103,7 @@ func _process(_delta: float) -> void:
 func has_unwound(linked_rope: Array) -> bool:
 	var rope1: Rope = linked_rope[0]
 	var rope2: Rope = linked_rope[1]
-	var center_point: Vector2 = linked_rope[2]
+	var center_point: Vector2 = linked_rope[2].center_point
 	var endpoints: Array[Vector2] = [
 		rope1.endpoint_one.global_position,
 		rope1.endpoint_two.global_position,
@@ -140,6 +141,9 @@ func does_line_intersect_ray(line: Array[Vector2], ray: Array[Vector2]) -> bool:
 	var t1 = v2.cross(v1) / dot
 	var t2 = v1.dot(v3) / dot
 
+	var result = (t1 >= 0.0 and (t2 >= 0.0 and t2 <= 1.0))
+	if not result:
+		print(result)
 	return (t1 >= 0.0 and (t2 >= 0.0 and t2 <= 1.0))
 
 
@@ -176,9 +180,14 @@ func find_intersection(line1: Array[Vector2], line2: Array[Vector2]) -> Vector2:
 	var y4 = line2[1].y
 	var a = (((x4 - x3) * (y3 - y1)) - ((y4 - y3) * (x3 - x1))) / (((x4 - x3) * (y2 - y1)) - ((y4 - y3) * (x2 - x1)))
 	var b = (((x2 - x1) * (y3 - y1)) - ((y2 - y1) * (x3 - x1))) / (((x4 - x3) * (y2 - y1)) - ((y4 - y3) * (x2 - x1)))
-	if 0 < a and a <= 1 and 0 < b and b <= 1.0:
+	if 0.1 < a and a <= 0.9 and 0.1 < b and b <= 0.9:
 		var px = x1 + a * (x2 - x1)
 		var py = y1 + a * (y2 - y1)
+		print("======")
+		print(line1)
+		print(line2)
+		print("a: %f, b: %f" % [a, b])
+		print(Vector2(px, py))
 		return Vector2(px, py)
 	else:
 		return Vector2.INF # if b == 0, the lines are parallel. if a == 0 and b == 0, colinear
@@ -250,6 +259,11 @@ func find_loop(intersection: Vector2, rope1: Rope, rope2: Rope) -> Array:
 		else:
 			adjacency_matrix[index1][index2] = true
 			adjacency_matrix[index2][index1] = true
+
+	for row in adjacency_matrix:
+		print(row)
+	for rope in all_ropes:
+		rope.print()
 
 	var cycles = find_all_cycles(adjacency_matrix)
 	var loop = cycles[0].map(func(i): return all_nodes[i])

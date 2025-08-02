@@ -9,13 +9,13 @@ func _ready() -> void:
 	$Sprite2D.z_index = Global.RenderOrder.PLAYER
 	$StateMachine.init(self)
 
-func _physics_process(delta: float) -> void:
-	$StateMachine.process_physics(delta)
+# func _physics_process(delta: float) -> void:
+# 	$StateMachine.process_physics(delta)
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	$StateMachine.process_input(event)
+# func _unhandled_input(event: InputEvent) -> void:
+# 	$StateMachine.process_input(event)
 
 
-func _process(delta: float) -> void:
-	$StateMachine.process_frame(delta)
+# func _process(delta: float) -> void:
+# 	$StateMachine.process_frame(delta)
