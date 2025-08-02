@@ -14,7 +14,7 @@ enum RenderOrder {
 
 enum CollisionLayer {
 	WALL = 1,
-	ROPE_SNAP_POINT = 2,
+	ROPE = 2,
 }
 
 var red_cowboy_location = Vector2.ZERO

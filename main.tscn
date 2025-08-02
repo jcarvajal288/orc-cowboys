@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://lnkxpkumeej5"]
+[gd_scene load_steps=11 format=3 uid="uid://lnkxpkumeej5"]
 
 [ext_resource type="PackedScene" uid="uid://cnqrm23ptl3i1" path="res://Level/level.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dafh3ycio256o" path="res://Entities/Characters/Cowboy/cowboy.tscn" id="2_0xm2m"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://gkjjuo3ca0jq" path="res://Entities/Characters/Cowboy/art/Orc_Cowboy_Blue.png" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bmtxevkmg2ite" path="res://Entities/Rope/rope.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dfmgg8xlsnyc6" path="res://Entities/Barrel/barrel.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://dqhro245jm7o3" path="res://Entities/Characters/Critters/Pig/pig.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://cexcakdwb1os6" path="res://Components/BarrelPlacer/barrel_placer.tscn" id="8_kek77"]
 [ext_resource type="PackedScene" uid="uid://bnvxq6x3ati5" path="res://Components/BarrelTracker/barrel_tracker.tscn" id="9_4c57u"]
 [ext_resource type="PackedScene" uid="uid://rbvlih3jaros" path="res://Components/ScoreTracker/score_tracker.tscn" id="9_kek77"]
@@ -41,6 +42,24 @@ endpoint_two = NodePath("../../WasdCowboy")
 
 [node name="BarrelTracker" parent="." instance=ExtResource("9_4c57u")]
 max_barrels = 5
+
+[node name="Pig" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(253, 78)
+
+[node name="Pig2" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(166, 47)
+
+[node name="Pig3" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(191, 121)
+
+[node name="Pig4" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(48, 90)
+
+[node name="Pig5" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(262, 181)
+
+[node name="Pig6" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(111, 134)
 
 [connection signal="loop_scored" from="BarrelPlacer" to="ScoreTracker" method="score_loop"]
 

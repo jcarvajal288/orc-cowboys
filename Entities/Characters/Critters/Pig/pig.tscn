@@ -184,6 +184,8 @@ _data = {
 radius = 4.12311
 
 [node name="Pig" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_i5wya")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
