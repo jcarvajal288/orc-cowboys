@@ -82,6 +82,9 @@ position = Vector2(16, 230)
 health = NodePath("../WasdCowboy/Health")
 heart_scene = ExtResource("16_yaehf")
 
+[node name="Lion" parent="." instance=ExtResource("10_4c57u")]
+position = Vector2(161, 92)
+
 [connection signal="scoring_finished" from="ScoreTracker" to="CritterManager" method="_on_scoring_finished"]
 [connection signal="loop_scored" from="BarrelPlacer" to="ScoreTracker" method="score_loop"]
 
