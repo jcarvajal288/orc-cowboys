@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dwc4k5ercf3i4"]
+[gd_scene load_steps=21 format=3 uid="uid://dwc4k5ercf3i4"]
 
 [ext_resource type="Script" uid="uid://bi8hc48242mrv" path="res://Entities/Characters/Critters/Lion/lion.gd" id="1_br007"]
 [ext_resource type="Texture2D" uid="uid://bvbhqddqfydte" path="res://Entities/Characters/Critters/Lion/art/lion_all.png" id="1_lxb2c"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dsc06pk7yuvfo" path="res://Entities/Characters/Components/StateMachine/state_machine.tscn" id="6_yfvwm"]
 [ext_resource type="PackedScene" uid="uid://ccd6q3xth0lqq" path="res://Entities/Characters/Components/StateMachine/States/Idle/idle.tscn" id="7_61fu6"]
 [ext_resource type="PackedScene" uid="uid://jua24evh8mco" path="res://Entities/Characters/Components/StateMachine/States/Move/move.tscn" id="8_a47ux"]
+[ext_resource type="PackedScene" uid="uid://vbdfi1rn6786" path="res://Entities/Characters/Components/Hitbox/hitbox.tscn" id="8_yfvwm"]
 
 [sub_resource type="Animation" id="Animation_lxb2c"]
 length = 0.001
@@ -183,6 +184,8 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_0xqtd"]
 radius = 7.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_61fu6"]
+
 [node name="Lion" type="CharacterBody2D"]
 script = ExtResource("1_br007")
 
@@ -214,3 +217,12 @@ move_state = NodePath("../Move")
 
 [node name="Move" parent="StateMachine" node_paths=PackedStringArray("idle_state") instance=ExtResource("8_a47ux")]
 idle_state = NodePath("../Idle")
+
+[node name="Hitbox" parent="." node_paths=PackedStringArray("subject") instance=ExtResource("8_yfvwm")]
+subject = NodePath("..")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_61fu6")
+debug_color = Color(1, 0, 0, 0.294118)
+
+[editable path="Hitbox"]

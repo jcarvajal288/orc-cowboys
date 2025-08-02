@@ -19,3 +19,5 @@ enum CollisionLayer {
 
 var arrow_cowboy_location = Vector2.ZERO
 var wasd_cowboy_location = Vector2.ZERO
+
+signal game_over
