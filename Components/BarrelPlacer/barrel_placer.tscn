@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cexcakdwb1os6"]
+
+[ext_resource type="Script" uid="uid://burpx5n6ka7uf" path="res://Components/BarrelPlacer/barrel_placer.gd" id="1_n24bx"]
+
+[node name="BarrelPlacer" type="Node"]
+script = ExtResource("1_n24bx")
