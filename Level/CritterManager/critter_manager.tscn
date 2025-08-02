@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c08l4m5lgp1bs"]
+[gd_scene load_steps=6 format=3 uid="uid://c08l4m5lgp1bs"]
 
 [ext_resource type="Script" uid="uid://dehl0plj1flsb" path="res://Level/CritterManager/critter_manager.gd" id="1_tb01a"]
 [ext_resource type="PackedScene" uid="uid://dqhro245jm7o3" path="res://Entities/Characters/Critters/Pig/pig.tscn" id="2_738ss"]
+[ext_resource type="PackedScene" uid="uid://dwc4k5ercf3i4" path="res://Entities/Characters/Critters/Lion/lion.tscn" id="3_752d6"]
+[ext_resource type="PackedScene" uid="uid://cakoeg50quab8" path="res://Effects/WindPuff/wind_puff.tscn" id="4_tlydd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ibxtt"]
 size = Vector2(265, 157)
@@ -9,6 +11,8 @@ size = Vector2(265, 157)
 [node name="CritterManager" type="Node2D"]
 script = ExtResource("1_tb01a")
 pig_scene = ExtResource("2_738ss")
+lion_scene = ExtResource("3_752d6")
+wind_puff_scene = ExtResource("4_tlydd")
 
 [node name="SpawnArea" type="Area2D" parent="."]
 

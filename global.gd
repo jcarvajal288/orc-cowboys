@@ -9,7 +9,8 @@ enum RenderOrder {
 	FLOOR = 0,
 	ROPE = 2,
 	PLAYER = 5,
-	WALL = 10
+	WALL = 10,
+	EFFECT = 20
 }
 
 enum CollisionLayer {

@@ -2,6 +2,7 @@ extends Node2D
 
 @export var pig_scene: PackedScene
 @export var lion_scene: PackedScene
+@export var wind_puff_scene: PackedScene
 
 @onready var time_elapsed = 0.0
 @onready var max_pigs = 6
@@ -44,6 +45,7 @@ func spawn_pig():
 	$Critters.add_child(pig)
 	$SpawnArea.body_exited.connect(pig.has_left_spawn_area)
 	$SpawnArea.body_entered.connect(pig.has_entered_spawn_area)
+	spawn_wind_puff(spawn_point)
 
 
 func spawn_lions():
@@ -51,6 +53,13 @@ func spawn_lions():
 	spawn_points.shuffle()
 	for i in range(min(max_lions, spawn_points.size())):
 		spawn_lion(spawn_points[i].global_position)
+		spawn_wind_puff(spawn_points[i].global_position)
+
+
+func spawn_wind_puff(spawn_point: Vector2) -> void:
+	var wind_puff = wind_puff_scene.instantiate()
+	wind_puff.global_position = spawn_point
+	add_child(wind_puff)
 
 
 func spawn_lion(spawn_point: Vector2):

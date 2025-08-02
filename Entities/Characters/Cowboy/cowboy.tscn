@@ -246,7 +246,6 @@ state_machine = NodePath("..")
 state_machine = NodePath("..")
 idle_state = NodePath("../Idle")
 animation_name = "attaack"
-animate_with_facing = true
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("9_dcnl0")]
 health = NodePath("../Health")
