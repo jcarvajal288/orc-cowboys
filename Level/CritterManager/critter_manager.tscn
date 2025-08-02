@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c08l4m5lgp1bs"]
+
+[ext_resource type="Script" uid="uid://dehl0plj1flsb" path="res://Level/CritterManager/critter_manager.gd" id="1_tb01a"]
+[ext_resource type="PackedScene" uid="uid://dqhro245jm7o3" path="res://Entities/Characters/Critters/Pig/pig.tscn" id="2_738ss"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibxtt"]
+size = Vector2(277, 181)
+
+[node name="CritterManager" type="Node2D"]
+script = ExtResource("1_tb01a")
+pig_scene = ExtResource("2_738ss")
+
+[node name="SpawnArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea"]
+shape = SubResource("RectangleShape2D_ibxtt")
+
+[node name="Critters" type="Node" parent="."]
