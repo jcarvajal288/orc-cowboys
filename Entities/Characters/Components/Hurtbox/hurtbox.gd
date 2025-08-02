@@ -10,5 +10,4 @@ func _ready() -> void:
 
 
 func _on_area_entered(hitbox: Hitbox) -> void:
-	print("hit")
 	on_hit.emit(hitbox)

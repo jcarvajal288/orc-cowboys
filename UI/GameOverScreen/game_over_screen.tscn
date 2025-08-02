@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://d243780ngc04u"]
+
+[ext_resource type="Script" uid="uid://rs47np8mjmh3" path="res://UI/GameOverScreen/game_over_screen.gd" id="1_i33ib"]
+
+[sub_resource type="SystemFont" id="SystemFont_j0l5x"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_50k4i"]
+font = SubResource("SystemFont_j0l5x")
+font_size = 32
+
+[node name="GameOverScreen" type="Node2D"]
+z_index = 100
+script = ExtResource("1_i33ib")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+offset = Vector2(75, 60)
+transform = Transform2D(1, 0, 0, 1, 75, 60)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Game Over"
+label_settings = SubResource("LabelSettings_50k4i")
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 18.0
+offset_top = 50.0
+offset_right = 172.0
+offset_bottom = 89.0
+text = "Press 'R' to restart"
+
+[node name="GrayOutBackground" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 0.333333)
+polygon = PackedVector2Array(-15, -14, -15, 264, 340, 266, 342, -13)

@@ -8,7 +8,6 @@ func enter() -> void:
 
 
 func _on_hit(_hitbox: Hitbox) -> void:
-	print("death on hit")
 	state_machine.change_state(self)
 
 

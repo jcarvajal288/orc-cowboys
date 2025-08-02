@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bnvxq6x3ati5"]
 
-[ext_resource type="Script" uid="uid://dtvcr6s1tn7k2" path="res://Components/BarrelTracker/barrel_tracker.gd" id="1_ecwq2"]
+[ext_resource type="Script" uid="uid://dtvcr6s1tn7k2" path="res://UI/BarrelTracker/barrel_tracker.gd" id="1_ecwq2"]
 [ext_resource type="Texture2D" uid="uid://cd5beg40c703k" path="res://Entities/Barrel/art/barrel.png" id="2_00ocq"]
 
 [sub_resource type="SystemFont" id="SystemFont_ecwq2"]
