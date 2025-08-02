@@ -81,6 +81,7 @@ health = NodePath("../WasdCowboy/Health")
 heart_scene = ExtResource("16_yaehf")
 
 [connection signal="scoring_finished" from="ScoreTracker" to="CritterManager" method="_on_scoring_finished"]
+[connection signal="loop_scored" from="BarrelPlacer" to="ScoreTracker" method="score_loop"]
 
 [editable path="ArrowCowboy"]
 [editable path="ArrowCowboy/Hurtbox"]

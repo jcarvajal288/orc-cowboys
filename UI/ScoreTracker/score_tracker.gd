@@ -23,11 +23,17 @@ func disable_score_area(b: bool) -> void:
 func score_loop(loop: Array) -> void:
 	$ScoreArea/LoopPolygon.polygon = loop
 	$ScoreArea/CollisionPolygon2D.polygon = loop
+	var old_score = score
 	disable_score_area(false)
 	$ScoreTimer.start(0.1)
 	await $ScoreTimer.timeout
 	disable_score_area(true)
+	var new_score = score
 	scoring_finished.emit()
+	if new_score > old_score:
+		$LoopSuccessSFX.play()
+	else:
+		$LoopFailureSFX.play()
 
 
 func score_critter(body: Node2D) -> void:

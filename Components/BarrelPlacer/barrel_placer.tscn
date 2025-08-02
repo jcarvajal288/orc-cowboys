@@ -7,11 +7,11 @@
 [node name="BarrelPlacer" type="Node"]
 script = ExtResource("1_n24bx")
 
-[node name="PlaceBarrelSFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_skixa")
-
 [node name="Barrels" type="Node2D" parent="."]
 
 [node name="Ropes" type="Node2D" parent="."]
 
 [node name="Rope" parent="Ropes" instance=ExtResource("3_gdy3i")]
+
+[node name="PlaceBarrelSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_skixa")
