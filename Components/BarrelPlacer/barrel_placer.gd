@@ -4,6 +4,7 @@ extends Node
 @export var wasd_cowboy: Cowboy
 @export var barrel_scene: PackedScene
 @export var rope_scene: PackedScene
+@export var stationary_rope_scene: PackedScene
 @export var barrel_tracker: BarrelTracker
 
 signal loop_scored
@@ -13,6 +14,7 @@ func _process(_delta: float) -> void:
 		place_barrel(wasd_cowboy)
 	elif Input.is_action_just_pressed('arrow_barrel'):
 		place_barrel(arrow_cowboy)
+	affix_stationary_ropes()
 	look_for_rope_intersection()
 
 
@@ -40,6 +42,15 @@ func place_barrel(cowboy: Cowboy) -> void:
 	barrel_tracker.subtract_barrel()
 
 
+func affix_stationary_ropes() -> void:
+	for rope in get_all_ropes():
+		if (not rope is StationaryRope and 
+			rope.endpoint_one is Barrel and 
+			rope.endpoint_two is Barrel):
+			replace_with_stationary_rope(rope)
+			
+
+
 func switch_out_ropes(cowboy: Cowboy, new_rope: Rope, barrel: Barrel) -> void:
 	for old_rope in get_children():
 		if old_rope is Rope:
@@ -49,6 +60,14 @@ func switch_out_ropes(cowboy: Cowboy, new_rope: Rope, barrel: Barrel) -> void:
 				old_rope.endpoint_two = barrel	
 	new_rope.endpoint_one = barrel
 	new_rope.endpoint_two = cowboy
+
+
+func replace_with_stationary_rope(rope: Rope):
+	var stationary_rope: StationaryRope = stationary_rope_scene.instantiate()
+	stationary_rope.endpoint_one = rope.endpoint_one
+	stationary_rope.endpoint_two = rope.endpoint_two
+	add_child(stationary_rope)
+	rope.queue_free()
 
 
 func ropes_are_linked(rope1: Rope, rope2: Rope) -> bool:

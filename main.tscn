@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://lnkxpkumeej5"]
+[gd_scene load_steps=12 format=3 uid="uid://lnkxpkumeej5"]
 
 [ext_resource type="PackedScene" uid="uid://cnqrm23ptl3i1" path="res://Level/level.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dafh3ycio256o" path="res://Entities/Characters/Cowboy/cowboy.tscn" id="2_0xm2m"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dqhro245jm7o3" path="res://Entities/Characters/Critters/Pig/pig.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://cexcakdwb1os6" path="res://Components/BarrelPlacer/barrel_placer.tscn" id="8_kek77"]
 [ext_resource type="PackedScene" uid="uid://bnvxq6x3ati5" path="res://Components/BarrelTracker/barrel_tracker.tscn" id="9_4c57u"]
+[ext_resource type="PackedScene" uid="uid://cj28k6p08jmf8" path="res://Entities/Rope/stationary_rope.tscn" id="9_efxa6"]
 [ext_resource type="PackedScene" uid="uid://rbvlih3jaros" path="res://Components/ScoreTracker/score_tracker.tscn" id="9_kek77"]
 
 [node name="Node2D" type="Node2D"]
@@ -33,6 +34,7 @@ arrow_cowboy = NodePath("../ArrowCowboy")
 wasd_cowboy = NodePath("../WasdCowboy")
 barrel_scene = ExtResource("6_7mycd")
 rope_scene = ExtResource("5_lquwl")
+stationary_rope_scene = ExtResource("9_efxa6")
 barrel_tracker = NodePath("../BarrelTracker")
 
 [node name="Rope" parent="BarrelPlacer" node_paths=PackedStringArray("endpoint_one", "endpoint_two") instance=ExtResource("5_lquwl")]
