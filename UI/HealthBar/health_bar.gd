@@ -9,7 +9,6 @@ func _ready() -> void:
 	change_health_bar()
 
 
-
 func change_health_bar() -> void:
 	var hearts = get_children()
 	for heart in hearts:

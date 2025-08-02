@@ -241,8 +241,8 @@ idle_state = NodePath("../Idle")
 [node name="Death" parent="StateMachine" node_paths=PackedStringArray("state_machine") instance=ExtResource("8_mi8ef")]
 state_machine = NodePath("..")
 
-[node name="Hurtbox" parent="." node_paths=PackedStringArray("subject") instance=ExtResource("9_dcnl0")]
-subject = NodePath("..")
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("9_dcnl0")]
+health = NodePath("../Health")
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(0, -3)
@@ -252,6 +252,5 @@ debug_color = Color(0, 1, 0, 0.294118)
 [node name="Health" parent="." instance=ExtResource("10_vm7nu")]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Death" method="_on_animation_player_animation_finished"]
-[connection signal="on_hit" from="Hurtbox" to="StateMachine/Death" method="_on_hit"]
 
 [editable path="Hurtbox"]
