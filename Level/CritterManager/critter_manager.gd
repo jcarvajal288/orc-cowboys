@@ -9,6 +9,10 @@ func _ready() -> void:
 	spawn_critters()
 
 
+func _process(delta: float) -> void:
+	time_elapsed += delta
+
+
 func spawn_critters():
 	var current_critters = $Critters.get_children().filter(func(child): 
 		return child is Critter
@@ -34,3 +38,7 @@ func spawn_pig():
 	var spawn_point = get_spawn_point()
 	pig.global_position = spawn_point
 	$Critters.add_child(pig)
+
+
+func _on_scoring_finished() -> void:
+	spawn_critters()

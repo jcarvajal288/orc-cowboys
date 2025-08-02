@@ -55,6 +55,7 @@ max_barrels = 5
 position = Vector2(158.5, 119.5)
 debug_color = Color(1, 1, 1, 0.168627)
 
+[connection signal="scoring_finished" from="ScoreTracker" to="CritterManager" method="_on_scoring_finished"]
 [connection signal="loop_scored" from="BarrelPlacer" to="ScoreTracker" method="score_loop"]
 
 [editable path="ArrowCowboy"]

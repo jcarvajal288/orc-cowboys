@@ -1,7 +1,8 @@
 class_name ScoreTracker extends Node
 
-var score = 0
+signal scoring_finished
 
+var score = 0
 
 func _ready() -> void:
 	$ScoreArea.body_entered.connect(score_critter)
@@ -26,6 +27,7 @@ func score_loop(loop: Array) -> void:
 	$ScoreTimer.start(0.1)
 	await $ScoreTimer.timeout
 	disable_score_area(true)
+	scoring_finished.emit()
 
 
 func score_critter(body: Node2D) -> void:
