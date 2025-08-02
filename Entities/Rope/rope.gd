@@ -12,7 +12,6 @@ func _ready() -> void:
 	$TextureRect.z_index = Global.RenderOrder.ROPE
 	$TextureRect.set_stretch_mode(TextureRect.StretchMode.STRETCH_TILE)
 	$TextureRect.set_expand_mode(TextureRect.ExpandMode.EXPAND_FIT_HEIGHT_PROPORTIONAL)
-	$TextureRect/Area2D.area_entered.connect(_on_area_entered)
 	$TextureRect/Area2D.set_collision_layer_value(Global.CollisionLayer.ROPE_SNAP_POINT, true)
 	$TextureRect/Area2D.set_collision_mask_value(Global.CollisionLayer.ROPE_SNAP_POINT, true)
 
@@ -28,14 +27,6 @@ func _process(_delta: float) -> void:
 	$TextureRect.size = Vector2(3, distance)
 	collision_shape.shape.size = $TextureRect.size
 	collision_shape.position = $TextureRect.size / 2.0
-
-
-func _on_area_entered(snap_point: Area2D):
-	if (is_instance_of(endpoint_one, Cowboy) or is_instance_of(endpoint_two, Cowboy)):
-		if (snap_point is RopeSnapPoint):
-			var anchor_point = snap_point.rope_anchor_point
-			if not (anchor_point == endpoint_one or anchor_point == endpoint_two):
-				rope_bent.emit(self, snap_point)
 
 
 func get_line_segment() -> Array[Vector2]:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://lnkxpkumeej5"]
+[gd_scene load_steps=10 format=3 uid="uid://lnkxpkumeej5"]
 
 [ext_resource type="PackedScene" uid="uid://cnqrm23ptl3i1" path="res://Level/level.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dafh3ycio256o" path="res://Entities/Characters/Cowboy/cowboy.tscn" id="2_0xm2m"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bmtxevkmg2ite" path="res://Entities/Rope/rope.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dfmgg8xlsnyc6" path="res://Entities/Barrel/barrel.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cexcakdwb1os6" path="res://Components/BarrelPlacer/barrel_placer.tscn" id="8_kek77"]
+[ext_resource type="PackedScene" uid="uid://bnvxq6x3ati5" path="res://Components/BarrelTracker/barrel_tracker.tscn" id="9_4c57u"]
 [ext_resource type="PackedScene" uid="uid://rbvlih3jaros" path="res://Components/ScoreTracker/score_tracker.tscn" id="9_kek77"]
 
 [node name="Node2D" type="Node2D"]
@@ -26,16 +27,20 @@ wasd_movement = true
 
 [node name="ScoreTracker" parent="." instance=ExtResource("9_kek77")]
 
-[node name="BarrelPlacer" parent="." node_paths=PackedStringArray("arrow_cowboy", "wasd_cowboy") instance=ExtResource("8_kek77")]
+[node name="BarrelPlacer" parent="." node_paths=PackedStringArray("arrow_cowboy", "wasd_cowboy", "barrel_tracker") instance=ExtResource("8_kek77")]
 arrow_cowboy = NodePath("../ArrowCowboy")
 wasd_cowboy = NodePath("../WasdCowboy")
 barrel_scene = ExtResource("6_7mycd")
 rope_scene = ExtResource("5_lquwl")
+barrel_tracker = NodePath("../BarrelTracker")
 
 [node name="Rope" parent="BarrelPlacer" node_paths=PackedStringArray("endpoint_one", "endpoint_two") instance=ExtResource("5_lquwl")]
 position = Vector2(196, 7)
 endpoint_one = NodePath("../../ArrowCowboy")
 endpoint_two = NodePath("../../WasdCowboy")
+
+[node name="BarrelTracker" parent="." instance=ExtResource("9_4c57u")]
+max_barrels = 5
 
 [connection signal="loop_scored" from="BarrelPlacer" to="ScoreTracker" method="score_loop"]
 

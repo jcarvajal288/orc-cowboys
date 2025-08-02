@@ -4,6 +4,7 @@ extends Node
 @export var wasd_cowboy: Cowboy
 @export var barrel_scene: PackedScene
 @export var rope_scene: PackedScene
+@export var barrel_tracker: BarrelTracker
 
 signal loop_scored
 
@@ -28,12 +29,15 @@ func get_all_barrels() -> Array:
 
 
 func place_barrel(cowboy: Cowboy) -> void:
+	if barrel_tracker.out_of_barrels():
+		return
 	var barrel = barrel_scene.instantiate()
 	var rope: Rope = rope_scene.instantiate()
 	barrel.position = cowboy.global_position
 	switch_out_ropes(cowboy, rope, barrel)
 	add_child(barrel)
 	add_child(rope)
+	barrel_tracker.subtract_barrel()
 
 
 func switch_out_ropes(cowboy: Cowboy, new_rope: Rope, barrel: Barrel) -> void:
@@ -69,16 +73,17 @@ func look_for_rope_intersection() -> void:
 				if intersection != Vector2.INF:
 					var loop = find_loop(intersection, ropes[i], ropes[j])
 					loop_scored.emit(loop)
-					call_deferred("reset_ropes")
+					call_deferred("reset_state")
 
 
-func reset_ropes():
+func reset_state():
 	for child in get_children():
 		child.queue_free()
 	var rope = rope_scene.instantiate()
 	rope.endpoint_one = wasd_cowboy
 	rope.endpoint_two = arrow_cowboy
 	add_child(rope)
+	barrel_tracker.reset()
 
 
 func find_intersection(line1: Array[Vector2], line2: Array[Vector2]) -> Vector2:
@@ -127,8 +132,8 @@ func find_loop(intersection: Vector2, rope1: Rope, rope2: Rope) -> Array:
 			adjacency_matrix[index1][index2] = true
 			adjacency_matrix[index2][index1] = true
 
-	for row in adjacency_matrix:
-		print(row)
+	# for row in adjacency_matrix:
+	# 	print(row)
 	# for rope in all_ropes:
 	# 	rope.print()
 

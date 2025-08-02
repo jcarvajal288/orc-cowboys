@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://4237u1hkupqd" path="res://Components/ScoreTracker/score_tracker.gd" id="1_uiuky"]
 
 [sub_resource type="SystemFont" id="SystemFont_ijk5u"]
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ttbmf"]
 font = SubResource("SystemFont_ijk5u")

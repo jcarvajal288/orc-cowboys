@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnvxq6x3ati5"]
+
+[ext_resource type="Script" uid="uid://dtvcr6s1tn7k2" path="res://Components/BarrelTracker/barrel_tracker.gd" id="1_ecwq2"]
+[ext_resource type="Texture2D" uid="uid://cd5beg40c703k" path="res://Entities/Barrel/art/barrel.png" id="2_00ocq"]
+
+[sub_resource type="SystemFont" id="SystemFont_ecwq2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_00ocq"]
+font = SubResource("SystemFont_ecwq2")
+
+[node name="BarrelTracker" type="Node2D"]
+script = ExtResource("1_ecwq2")
+
+[node name="BarrelCanvas" type="CanvasLayer" parent="."]
+offset = Vector2(280.93, 10.45)
+transform = Transform2D(1, 0, 0, 1, 280.93, 10.45)
+
+[node name="BarrelSprite" type="Sprite2D" parent="BarrelCanvas"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_00ocq")
+
+[node name="LabelCanvas" type="CanvasLayer" parent="."]
+offset = Vector2(292.24, -1.465)
+transform = Transform2D(1, 0, 0, 1, 292.24, -1.465)
+
+[node name="Label" type="Label" parent="LabelCanvas"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "5"
+label_settings = SubResource("LabelSettings_00ocq")

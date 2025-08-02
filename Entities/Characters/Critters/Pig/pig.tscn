@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dqhro245jm7o3"]
+[gd_scene load_steps=19 format=3 uid="uid://dqhro245jm7o3"]
 
 [ext_resource type="Script" uid="uid://j8vkema2pfn" path="res://Entities/Characters/character_animations.gd" id="1_3e5f3"]
 [ext_resource type="Texture2D" uid="uid://cxifb7wxfjsce" path="res://Entities/Characters/Critters/Pig/art/pig_full.png" id="1_gvoma"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://6tbqn5pwve8" path="res://Entities/Characters/Components/StateMachine/state_machine.gd" id="3_6stqi"]
 [ext_resource type="PackedScene" uid="uid://ccd6q3xth0lqq" path="res://Entities/Characters/Components/StateMachine/States/Idle/idle.tscn" id="4_3xngq"]
 [ext_resource type="PackedScene" uid="uid://jua24evh8mco" path="res://Entities/Characters/Components/StateMachine/States/Move/move.tscn" id="5_0io6k"]
-[ext_resource type="PackedScene" uid="uid://cmrawgb3xnu8l" path="res://Components/RopeBender/rope_bender.tscn" id="6_3xngq"]
 [ext_resource type="PackedScene" uid="uid://cbajqb85nipho" path="res://Entities/Characters/Components/Directors/MeanderDirector/meander_director.tscn" id="8_sju1t"]
 
 [sub_resource type="Animation" id="Animation_3e5f3"]
@@ -210,33 +209,8 @@ metadata/_custom_type_script = "uid://6tbqn5pwve8"
 
 [node name="Idle" parent="StateMachine" node_paths=PackedStringArray("move_state") instance=ExtResource("4_3xngq")]
 move_state = NodePath("../Move")
-animation_name = "idle"
-animate_with_facing = true
 
 [node name="Move" parent="StateMachine" node_paths=PackedStringArray("idle_state") instance=ExtResource("5_0io6k")]
 idle_state = NodePath("../Idle")
-animation_name = "move"
-animate_with_facing = true
-
-[node name="RopeBender" parent="." instance=ExtResource("6_3xngq")]
-position = Vector2(-1.025, 0)
-
-[node name="RopeSnapPoint2" parent="RopeBender" index="1"]
-position = Vector2(3, -3)
-
-[node name="RopeSnapPoint3" parent="RopeBender" index="2"]
-position = Vector2(3, 3)
-
-[node name="RopeSnapPoint5" parent="RopeBender" index="3"]
-position = Vector2(-3, 3)
-
-[node name="RopeSnapPoint6" parent="RopeBender" index="4"]
-position = Vector2(-3, -3)
 
 [node name="MeanderDirector" parent="." instance=ExtResource("8_sju1t")]
-
-[editable path="RopeBender"]
-[editable path="RopeBender/RopeSnapPoint2"]
-[editable path="RopeBender/RopeSnapPoint3"]
-[editable path="RopeBender/RopeSnapPoint5"]
-[editable path="RopeBender/RopeSnapPoint6"]
