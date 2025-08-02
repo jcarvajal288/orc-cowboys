@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dafh3ycio256o"]
+[gd_scene load_steps=24 format=3 uid="uid://dafh3ycio256o"]
 
 [ext_resource type="Texture2D" uid="uid://biho508pn20s" path="res://Entities/Characters/Cowboy/art/Orc_Cowboy_Red.png" id="1_32ll6"]
 [ext_resource type="Script" uid="uid://bmt6lplmgofy4" path="res://Entities/Characters/Cowboy/cowboy.gd" id="1_o8meo"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://jua24evh8mco" path="res://Entities/Characters/Components/StateMachine/States/Move/move.tscn" id="4_d251f"]
 [ext_resource type="PackedScene" uid="uid://77pp4qp6w4m6" path="res://Entities/Characters/Components/StateMachine/States/Death/death.tscn" id="8_mi8ef"]
 [ext_resource type="PackedScene" uid="uid://cxusqd4bbwl8r" path="res://Entities/Characters/Components/Hurtbox/hurtbox.tscn" id="9_dcnl0"]
+[ext_resource type="PackedScene" uid="uid://cqumhg1bhhmwr" path="res://Entities/Characters/Components/Health/health.tscn" id="10_vm7nu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_32ll6"]
 radius = 6.0
@@ -247,6 +248,8 @@ subject = NodePath("..")
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_vm7nu")
 debug_color = Color(0, 1, 0, 0.294118)
+
+[node name="Health" parent="." instance=ExtResource("10_vm7nu")]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Death" method="_on_animation_player_animation_finished"]
 [connection signal="on_hit" from="Hurtbox" to="StateMachine/Death" method="_on_hit"]

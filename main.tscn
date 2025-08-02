@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://lnkxpkumeej5"]
+[gd_scene load_steps=17 format=3 uid="uid://lnkxpkumeej5"]
 
 [ext_resource type="Script" uid="uid://djbckq3a1so7s" path="res://game_controller.gd" id="1_dg77c"]
 [ext_resource type="PackedScene" uid="uid://cnqrm23ptl3i1" path="res://Level/level.tscn" id="1_ig7tw"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://dwc4k5ercf3i4" path="res://Entities/Characters/Critters/Lion/lion.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://c08l4m5lgp1bs" path="res://Level/CritterManager/critter_manager.tscn" id="13_w48qg"]
 [ext_resource type="PackedScene" uid="uid://d243780ngc04u" path="res://UI/GameOverScreen/game_over_screen.tscn" id="13_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://bcashkxflhkca" path="res://UI/HealthBar/health_bar.tscn" id="15_2cqfq"]
+[ext_resource type="PackedScene" uid="uid://c1178at0uw2of" path="res://UI/HealthBar/heart.tscn" id="16_yaehf"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_dg77c")
@@ -68,6 +70,17 @@ position = Vector2(21, 207)
 
 [node name="SpawnPoint4" parent="CritterManager/LionSpawnPoints" index="3"]
 position = Vector2(297, 206)
+
+[node name="ArrowHealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("15_2cqfq")]
+position = Vector2(285, 230)
+health = NodePath("../ArrowCowboy/Health")
+is_red = true
+heart_scene = ExtResource("16_yaehf")
+
+[node name="WasdHealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("15_2cqfq")]
+position = Vector2(16, 230)
+health = NodePath("../WasdCowboy/Health")
+heart_scene = ExtResource("16_yaehf")
 
 [connection signal="scoring_finished" from="ScoreTracker" to="CritterManager" method="_on_scoring_finished"]
 [connection signal="loop_scored" from="BarrelPlacer" to="ScoreTracker" method="score_loop"]

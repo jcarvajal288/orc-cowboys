@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcashkxflhkca"]
+
+[ext_resource type="Script" uid="uid://bvt3cllim5x4k" path="res://UI/HealthBar/health_bar.gd" id="1_5hgn3"]
+[ext_resource type="PackedScene" uid="uid://c1178at0uw2of" path="res://UI/HealthBar/heart.tscn" id="2_c1bgn"]
+
+[node name="HealthBar" type="Node2D"]
+z_index = 100
+script = ExtResource("1_5hgn3")
+
+[node name="Heart" parent="." instance=ExtResource("2_c1bgn")]
+
+[node name="Heart2" parent="." instance=ExtResource("2_c1bgn")]
+position = Vector2(8, 0)
+
+[node name="Heart3" parent="." instance=ExtResource("2_c1bgn")]
+position = Vector2(16, 0)
+
+[editable path="Heart"]
+[editable path="Heart2"]
+[editable path="Heart3"]
