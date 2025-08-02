@@ -17,9 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://bcashkxflhkca" path="res://UI/HealthBar/health_bar.tscn" id="15_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://c1178at0uw2of" path="res://UI/HealthBar/heart.tscn" id="16_yaehf"]
 
-[node name="Node2D" type="Node2D"]
+[node name="GameController" type="Node2D" node_paths=PackedStringArray("score_tracker")]
 script = ExtResource("1_dg77c")
 game_over_screen_scene = ExtResource("13_ycdy4")
+score_tracker = NodePath("ScoreTracker")
 
 [node name="Level" parent="." instance=ExtResource("1_ig7tw")]
 

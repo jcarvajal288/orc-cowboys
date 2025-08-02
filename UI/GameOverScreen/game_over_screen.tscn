@@ -14,21 +14,29 @@ z_index = 100
 script = ExtResource("1_i33ib")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-offset = Vector2(75, 60)
-transform = Transform2D(1, 0, 0, 1, 75, 60)
+offset = Vector2(75, 71.89)
+transform = Transform2D(1, 0, 0, 1, 75, 71.89)
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="GameOverLabel" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Game Over"
 label_settings = SubResource("LabelSettings_50k4i")
 
-[node name="Label2" type="Label" parent="CanvasLayer"]
-offset_left = 18.0
-offset_top = 50.0
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+offset_top = 51.0
+offset_right = 175.0
+offset_bottom = 90.0
+text = "Final Score: 0"
+horizontal_alignment = 1
+
+[node name="RestartLabel" type="Label" parent="CanvasLayer"]
+offset_left = 3.0
+offset_top = 91.0
 offset_right = 172.0
-offset_bottom = 89.0
+offset_bottom = 121.0
 text = "Press 'R' to restart"
+horizontal_alignment = 1
 
 [node name="GrayOutBackground" type="Polygon2D" parent="."]
 color = Color(0, 0, 0, 0.333333)
