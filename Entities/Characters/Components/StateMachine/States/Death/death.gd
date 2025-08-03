@@ -14,7 +14,7 @@ func _on_death() -> void:
 
 
 func _on_animation_player_animation_finished(anim_name:StringName) -> void:
-	if anim_name == self.animation_name:
+	if anim_name == self.animation_name and not Global.is_game_over:
 		Global.game_over.emit()
 
 	
