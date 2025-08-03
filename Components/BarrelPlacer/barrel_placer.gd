@@ -9,6 +9,9 @@ extends Node
 
 signal loop_scored
 
+func _ready() -> void:
+	Global.game_over.connect(_on_game_over)
+
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('wasd_barrel'):
 		place_barrel(wasd_cowboy)
@@ -181,3 +184,10 @@ func find_cycle(adjacency_matrix: Array) -> Array:
 		return adjacency_matrix[node][i]
 	)
 	return path.slice(cycle_start, path.size())
+
+
+func _on_game_over() -> void:
+	for barrel in get_all_barrels():
+		barrel.queue_free()
+	for rope in get_all_ropes():
+		rope.queue_free()
