@@ -131,34 +131,47 @@ func find_intersection(line1: Array[Vector2], line2: Array[Vector2]) -> Vector2:
 
 
 func find_loop(intersection: Vector2, rope1: Rope, rope2: Rope) -> Array:
-	var all_ropes = get_all_ropes()
-	var all_nodes = get_all_barrels().map(func(b): return b.global_position)
-	all_nodes.append(intersection)
+	var nodes = get_all_barrels().map(func(b): return b.global_position)
+	nodes.append(intersection)
+	nodes.append(Global.arrow_cowboy_location)
+	nodes.append(Global.wasd_cowboy_location)
+
+	print("Nodes:")
+	print(nodes)
+
+	var ropes = get_all_ropes().filter(func(rope): 
+		return rope != rope1 and rope != rope2
+	)
+	var edges = ropes.map(func(rope):
+		return [rope.endpoint_one.global_position, rope.endpoint_two.global_position]
+	)
+	edges.append([rope1.endpoint_one.global_position, intersection])
+	edges.append([rope1.endpoint_two.global_position, intersection])
+	edges.append([rope2.endpoint_one.global_position, intersection])
+	edges.append([rope2.endpoint_two.global_position, intersection])
+
+	print("Edges:")
+	print(edges)
 
 	var adjacency_matrix = Array()
-	adjacency_matrix.resize(all_nodes.size())
+	adjacency_matrix.resize(nodes.size())
 	for i in range(adjacency_matrix.size()):
 		adjacency_matrix[i] = Array()
-		adjacency_matrix[i].resize(all_nodes.size())
+		adjacency_matrix[i].resize(nodes.size())
 		for j in range(adjacency_matrix[i].size()):
 			adjacency_matrix[i][j] = false
 
-	for rope in all_ropes:
-		var index1 = all_nodes.find(rope.endpoint_one.global_position)
-		var index2 = all_nodes.find(rope.endpoint_two.global_position)
-		if (rope == rope1 or rope == rope2): # attach these to the intersection point
-			adjacency_matrix[index1][-1] = true
-			adjacency_matrix[index2][-1] = true
-			adjacency_matrix[-1][index1] = true
-			adjacency_matrix[-1][index2] = true
-		else:
-			adjacency_matrix[index1][index2] = true
-			adjacency_matrix[index2][index1] = true
-	for i in adjacency_matrix.size():
-		adjacency_matrix[i][i] = false # don't link nodes to themselves
+	for edge in edges:
+		var node1 = nodes.find(edge[0])
+		var node2 = nodes.find(edge[1])
+		adjacency_matrix[node1][node2] = true
+		adjacency_matrix[node2][node1] = true
+
+	for row in adjacency_matrix:
+		print(row)
 
 	var cycle = find_cycle(adjacency_matrix)
-	return cycle.map(func(i): return all_nodes[i])
+	return cycle.map(func(i): return nodes[i])
 
 
 func find_cycle(adjacency_matrix: Array) -> Array:
