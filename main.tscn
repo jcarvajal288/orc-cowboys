@@ -70,13 +70,15 @@ position = Vector2(21, 207)
 position = Vector2(297, 206)
 
 [node name="ArrowHealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("15_2cqfq")]
-position = Vector2(285, 230)
+position = Vector2(273.8, 230)
+scale = Vector2(1.75, 1.75)
 health = NodePath("../ArrowCowboy/Health")
 is_red = true
 heart_scene = ExtResource("16_yaehf")
 
 [node name="WasdHealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("15_2cqfq")]
-position = Vector2(16, 230)
+position = Vector2(17.495, 230)
+scale = Vector2(1.75, 1.75)
 health = NodePath("../WasdCowboy/Health")
 heart_scene = ExtResource("16_yaehf")
 
