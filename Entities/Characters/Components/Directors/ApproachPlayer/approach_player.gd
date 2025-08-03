@@ -12,4 +12,4 @@ func _physics_process(_delta: float) -> void:
 		movement_vector = (Global.arrow_cowboy_location - subject.global_position).normalized()
 	elif blue_distance == closest_cowboy and blue_distance <= chase_distance: 
 		movement_vector = (Global.wasd_cowboy_location - subject.global_position).normalized()
-	should_attack = closest_cowboy <= attack_distance
+	should_attack = not Global.is_game_over and closest_cowboy <= attack_distance

@@ -1,9 +1,7 @@
 extends Node
 
 var rng: RandomNumberGenerator
-
-func _ready() -> void:
-	rng = RandomNumberGenerator.new()
+@onready var is_game_over = false
 
 enum RenderOrder {
 	FLOOR = 0,
@@ -26,6 +24,15 @@ var spawn_area_position = Vector2.ZERO
 var spawn_area_rect = null
 
 signal game_over
+
+
+func _ready() -> void:
+	rng = RandomNumberGenerator.new()
+	game_over.connect(_on_game_over)
+
+
+func _on_game_over() -> void:
+	is_game_over = true
 
 
 func get_random_point_in_spawn_area() -> Vector2:
