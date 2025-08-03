@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d243780ngc04u"]
+[gd_scene load_steps=5 format=3 uid="uid://d243780ngc04u"]
 
 [ext_resource type="Script" uid="uid://rs47np8mjmh3" path="res://UI/GameOverScreen/game_over_screen.gd" id="1_i33ib"]
+[ext_resource type="AudioStream" uid="uid://dgl5v820pdk8o" path="res://UI/GameOverScreen/sfx/Quest_Abandoned.wav" id="2_0b6o4"]
 
 [sub_resource type="SystemFont" id="SystemFont_j0l5x"]
 subpixel_positioning = 0
@@ -41,3 +42,6 @@ horizontal_alignment = 1
 [node name="GrayOutBackground" type="Polygon2D" parent="."]
 color = Color(0, 0, 0, 0.333333)
 polygon = PackedVector2Array(-15, -14, -15, 264, 340, 266, 342, -13)
+
+[node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_0b6o4")

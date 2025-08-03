@@ -1,5 +1,8 @@
 extends Node2D
 
+func _ready() -> void:
+	$GameOverSound.play()
+
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("reset"):
 		Global.is_game_over = false
