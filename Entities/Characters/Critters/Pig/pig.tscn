@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dqhro245jm7o3"]
+[gd_scene load_steps=22 format=3 uid="uid://dqhro245jm7o3"]
 
 [ext_resource type="Script" uid="uid://j8vkema2pfn" path="res://Entities/Characters/character_animations.gd" id="1_3e5f3"]
 [ext_resource type="Texture2D" uid="uid://cxifb7wxfjsce" path="res://Entities/Characters/Critters/Pig/art/pig_full.png" id="1_gvoma"]
@@ -6,7 +6,10 @@
 [ext_resource type="Script" uid="uid://6tbqn5pwve8" path="res://Entities/Characters/Components/StateMachine/state_machine.gd" id="3_6stqi"]
 [ext_resource type="PackedScene" uid="uid://ccd6q3xth0lqq" path="res://Entities/Characters/Components/StateMachine/States/Idle/idle.tscn" id="4_3xngq"]
 [ext_resource type="PackedScene" uid="uid://jua24evh8mco" path="res://Entities/Characters/Components/StateMachine/States/Move/move.tscn" id="5_0io6k"]
+[ext_resource type="AudioStream" uid="uid://dk5djoddbessy" path="res://Entities/Characters/Critters/Pig/sfx/pig-grunt-100272.mp3" id="8_ngy87"]
 [ext_resource type="PackedScene" uid="uid://cbajqb85nipho" path="res://Entities/Characters/Components/Directors/MeanderDirector/meander_director.tscn" id="8_sju1t"]
+[ext_resource type="AudioStream" uid="uid://wdq5fwe71lvq" path="res://Entities/Characters/Critters/Pig/sfx/pig-sound-47168.mp3" id="9_ip3pb"]
+[ext_resource type="AudioStream" uid="uid://cloqqf2xwb2ks" path="res://Entities/Characters/Critters/Pig/sfx/pig-squeak-47166(1).mp3" id="10_8x451"]
 
 [sub_resource type="Animation" id="Animation_3e5f3"]
 length = 0.001
@@ -217,3 +220,15 @@ idle_state = NodePath("../Idle")
 
 [node name="MeanderDirector" parent="." node_paths=PackedStringArray("subject") instance=ExtResource("8_sju1t")]
 subject = NodePath("..")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ngy87")
+volume_db = -10.746
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_ip3pb")
+volume_db = -19.439
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_8x451")
+volume_db = -15.552
