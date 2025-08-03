@@ -154,37 +154,27 @@ func find_loop(intersection: Vector2, rope1: Rope, rope2: Rope) -> Array:
 		else:
 			adjacency_matrix[index1][index2] = true
 			adjacency_matrix[index2][index1] = true
+	for i in adjacency_matrix.size():
+		adjacency_matrix[i][i] = false # don't link nodes to themselves
 
-	# for row in adjacency_matrix:
-	# 	print(row)
-	# for rope in all_ropes:
-	# 	rope.print()
-
-	var cycles = find_all_cycles(adjacency_matrix)
-	var loop = cycles[0].map(func(i): return all_nodes[i])
-	return loop
+	var cycle = find_cycle(adjacency_matrix)
+	return cycle.map(func(i): return all_nodes[i])
 
 
-func find_all_cycles(adjacency_matrix: Array) -> Array:
-	# took from here: https://tech-champion.com/programming/python-programming/python-cycle-detection-in-adjacency-matrix-finding-all-simple-cycles/
-	var num_nodes = adjacency_matrix.size()
-	var all_cycles = Array()
-
-	var dfs := func(node, path, visited, dfs_func) -> void:
-		visited[node] = true
+func find_cycle(adjacency_matrix: Array) -> Array:
+	var starting_node = adjacency_matrix.find_custom(func(row): 
+		return row.count(true) == 1
+	)
+	var path = Array()
+	var node = starting_node
+	while(not path.has(node)):
 		path.append(node)
-		for neighbor in range(num_nodes):
-			if (adjacency_matrix[node][neighbor]):
-				if neighbor == path[0] and path.size() > 2:
-					all_cycles.append(path.duplicate(true))
-				elif not visited[neighbor]:
-					dfs_func.call(neighbor, path, visited.duplicate(true), dfs_func)
-	
-	for start_node in range(num_nodes):
-		var visited = Array()
-		visited.resize(num_nodes)
-		for i in range(visited.size()):
-			visited[i] = false
-			dfs.call(start_node, Array(), visited, dfs)
-	
-	return all_cycles
+		print(path)
+		for i in range(adjacency_matrix[node].size()):
+			if not path.has(i) and adjacency_matrix[node][i]:
+				node = i
+				break
+	var cycle_start = path.find_custom(func(i):
+		return adjacency_matrix[node][i]
+	)
+	return path.slice(cycle_start, path.size())

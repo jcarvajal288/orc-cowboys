@@ -21,6 +21,7 @@ func disable_score_area(b: bool) -> void:
 
 
 func score_loop(loop: Array) -> void:
+	print("score loop")
 	$ScoreArea/LoopPolygon.polygon = loop
 	$ScoreArea/CollisionPolygon2D.polygon = loop
 	var old_score = score
@@ -37,6 +38,7 @@ func score_loop(loop: Array) -> void:
 
 
 func score_critter(body: Node2D) -> void:
+	print("score critter")
 	if is_instance_of(body, Critter):
 		change_score(body.score)
 		body.queue_free()
