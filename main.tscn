@@ -80,6 +80,7 @@ position = Vector2(16, 230)
 health = NodePath("../WasdCowboy/Health")
 heart_scene = ExtResource("16_yaehf")
 
+[connection signal="scored_lion" from="ScoreTracker" to="CritterManager" method="_on_scored_lion"]
 [connection signal="scoring_finished" from="ScoreTracker" to="CritterManager" method="_on_scoring_finished"]
 [connection signal="loop_scored" from="BarrelPlacer" to="ScoreTracker" method="score_loop"]
 

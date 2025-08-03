@@ -1,6 +1,7 @@
 class_name ScoreTracker extends Node
 
 signal scoring_finished
+signal scored_lion
 
 var score = 0
 
@@ -37,6 +38,8 @@ func score_loop(loop: Array) -> void:
 
 
 func score_critter(body: Node2D) -> void:
+	if is_instance_of(body, Lion):
+		scored_lion.emit()
 	if is_instance_of(body, Critter):
 		change_score(body.score)
 		body.queue_free()
