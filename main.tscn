@@ -57,7 +57,7 @@ position = Vector2(297, 206)
 position = Vector2(273.8, 230)
 scale = Vector2(1.75, 1.75)
 health = NodePath("../ArrowCowboy/Health")
-is_red = true
+is_green = true
 heart_scene = ExtResource("16_yaehf")
 
 [node name="WasdHealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("15_2cqfq")]
