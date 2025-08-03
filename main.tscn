@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://lnkxpkumeej5"]
+[gd_scene load_steps=17 format=3 uid="uid://lnkxpkumeej5"]
 
 [ext_resource type="Script" uid="uid://djbckq3a1so7s" path="res://game_controller.gd" id="1_dg77c"]
 [ext_resource type="PackedScene" uid="uid://cnqrm23ptl3i1" path="res://Level/level.tscn" id="1_ig7tw"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bnvxq6x3ati5" path="res://UI/BarrelTracker/barrel_tracker.tscn" id="9_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cj28k6p08jmf8" path="res://Entities/Rope/stationary_rope.tscn" id="9_efxa6"]
 [ext_resource type="PackedScene" uid="uid://rbvlih3jaros" path="res://UI/ScoreTracker/score_tracker.tscn" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://dwc4k5ercf3i4" path="res://Entities/Characters/Critters/Lion/lion.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://c08l4m5lgp1bs" path="res://Level/CritterManager/critter_manager.tscn" id="13_w48qg"]
 [ext_resource type="PackedScene" uid="uid://d243780ngc04u" path="res://UI/GameOverScreen/game_over_screen.tscn" id="13_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://bcashkxflhkca" path="res://UI/HealthBar/health_bar.tscn" id="15_2cqfq"]
@@ -79,6 +80,9 @@ heart_scene = ExtResource("16_yaehf")
 position = Vector2(16, 230)
 health = NodePath("../WasdCowboy/Health")
 heart_scene = ExtResource("16_yaehf")
+
+[node name="Lion" parent="." instance=ExtResource("10_4c57u")]
+position = Vector2(161, 85)
 
 [connection signal="scoring_finished" from="ScoreTracker" to="CritterManager" method="_on_scoring_finished"]
 [connection signal="loop_scored" from="BarrelPlacer" to="ScoreTracker" method="score_loop"]
