@@ -136,9 +136,6 @@ func find_loop(intersection: Vector2, rope1: Rope, rope2: Rope) -> Array:
 	nodes.append(Global.arrow_cowboy_location)
 	nodes.append(Global.wasd_cowboy_location)
 
-	print("Nodes:")
-	print(nodes)
-
 	var ropes = get_all_ropes().filter(func(rope): 
 		return rope != rope1 and rope != rope2
 	)
@@ -149,9 +146,6 @@ func find_loop(intersection: Vector2, rope1: Rope, rope2: Rope) -> Array:
 	edges.append([rope1.endpoint_two.global_position, intersection])
 	edges.append([rope2.endpoint_one.global_position, intersection])
 	edges.append([rope2.endpoint_two.global_position, intersection])
-
-	print("Edges:")
-	print(edges)
 
 	var adjacency_matrix = Array()
 	adjacency_matrix.resize(nodes.size())
@@ -167,9 +161,6 @@ func find_loop(intersection: Vector2, rope1: Rope, rope2: Rope) -> Array:
 		adjacency_matrix[node1][node2] = true
 		adjacency_matrix[node2][node1] = true
 
-	for row in adjacency_matrix:
-		print(row)
-
 	var cycle = find_cycle(adjacency_matrix)
 	return cycle.map(func(i): return nodes[i])
 
@@ -182,7 +173,6 @@ func find_cycle(adjacency_matrix: Array) -> Array:
 	var node = starting_node
 	while(not path.has(node)):
 		path.append(node)
-		print(path)
 		for i in range(adjacency_matrix[node].size()):
 			if not path.has(i) and adjacency_matrix[node][i]:
 				node = i

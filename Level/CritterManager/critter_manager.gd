@@ -14,7 +14,7 @@ func _ready() -> void:
 	Global.spawn_area_position = $SpawnArea/CollisionShape2D.global_position
 	Global.spawn_area_rect = $SpawnArea/CollisionShape2D.shape.get_rect()
 	$SpawnArea.set_collision_mask_value(Global.CollisionLayer.SPAWN_AREA, true)
-	# spawn_critters()
+	spawn_critters()
 
 
 func _process(delta: float) -> void:
@@ -72,4 +72,4 @@ func spawn_lion(spawn_point: Vector2):
 
 func _on_scoring_finished() -> void:
 	pass
-	# spawn_critters()
+	spawn_critters()
