@@ -7,12 +7,12 @@ var score = 0
 func _ready() -> void:
 	$ScoreArea.body_entered.connect(score_critter)
 	disable_score_area(true)
-	$CanvasLayer/ScoreLabel.text = "%d" % score
+	$CanvasLayer/ScoreLabel.text = "Score: %d" % score
 
 
 func change_score(amount: int) -> void:
 	score += amount
-	$CanvasLayer/ScoreLabel.text = "%d" % score
+	$CanvasLayer/ScoreLabel.text = "Score: %d" % score
 
 
 func disable_score_area(b: bool) -> void:
