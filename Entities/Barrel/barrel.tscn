@@ -1,17 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfmgg8xlsnyc6"]
+[gd_scene load_steps=3 format=3 uid="uid://dfmgg8xlsnyc6"]
 
 [ext_resource type="Texture2D" uid="uid://cd5beg40c703k" path="res://Entities/Barrel/art/barrel.png" id="1_wkbkx"]
 [ext_resource type="Script" uid="uid://cl6ymbcpxw7bg" path="res://Entities/Barrel/barrel.gd" id="1_xp7jd"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wv1ew"]
-radius = 3.0
-height = 8.0
-
-[node name="Barrel" type="StaticBody2D"]
+[node name="Barrel" type="Node2D"]
 script = ExtResource("1_xp7jd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_wkbkx")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_wv1ew")

@@ -1,1 +1,1 @@
-class_name Barrel extends StaticBody2D
+class_name Barrel extends Node2D
