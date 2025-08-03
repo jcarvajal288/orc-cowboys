@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var health: Health
-@export var is_red: bool
+@export var is_green: bool
 @export var heart_scene: PackedScene
 
 func _ready() -> void:
@@ -14,4 +14,4 @@ func change_health_bar() -> void:
 	for heart in hearts:
 		heart.set_empty()
 	for i in range(health.current_health):
-		hearts[i].set_color(is_red)
+		hearts[i].set_color(is_green)

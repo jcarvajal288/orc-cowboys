@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dys1a8poi1k5"
-path="res://.godot/imported/red_and_blue_hearts.png-a353f5a9c1a3830ae8233326cb7451e8.ctex"
+uid="uid://topm0sorbblr"
+path="res://.godot/imported/green_and_yellow_hearts.png-2b5a4f0712fa75c04249714939a120ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/HealthBar/art/red_and_blue_hearts.png"
-dest_files=["res://.godot/imported/red_and_blue_hearts.png-a353f5a9c1a3830ae8233326cb7451e8.ctex"]
+source_file="res://UI/HealthBar/art/green_and_yellow_hearts.png"
+dest_files=["res://.godot/imported/green_and_yellow_hearts.png-2b5a4f0712fa75c04249714939a120ef.ctex"]
 
 [params]
 

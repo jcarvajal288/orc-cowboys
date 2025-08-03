@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1178at0uw2of"]
 
 [ext_resource type="Script" uid="uid://cgkygc2jbcinf" path="res://UI/HealthBar/heart.gd" id="1_t1ipm"]
-[ext_resource type="Texture2D" uid="uid://dys1a8poi1k5" path="res://UI/HealthBar/art/red_and_blue_hearts.png" id="2_dobvr"]
+[ext_resource type="Texture2D" uid="uid://topm0sorbblr" path="res://UI/HealthBar/art/green_and_yellow_hearts.png" id="2_dobvr"]
 
 [node name="Heart" type="Node2D"]
 script = ExtResource("1_t1ipm")
